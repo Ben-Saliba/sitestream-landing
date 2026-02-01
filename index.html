@@ -13,8 +13,7 @@
           colors: {
             primary: '#14B8A6',
             'primary-dark': '#0D9488',
-            dark: '#0F172A',
-            'dark-light': '#1E293B',
+            'primary-light': '#5EEAD4',
           }
         }
       }
@@ -24,337 +23,337 @@
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
     body { font-family: 'Inter', sans-serif; }
-    .gradient-bg { background: linear-gradient(135deg, #0F172A 0%, #1E293B 50%, #0F172A 100%); }
-    .glow { box-shadow: 0 0 60px rgba(20, 184, 166, 0.3); }
+    .gradient-text { background: linear-gradient(135deg, #14B8A6 0%, #0D9488 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
     .card-hover { transition: transform 0.3s, box-shadow 0.3s; }
-    .card-hover:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(20, 184, 166, 0.2); }
+    .card-hover:hover { transform: translateY(-4px); box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08); }
+    .hero-gradient { background: linear-gradient(180deg, #F0FDFA 0%, #FFFFFF 100%); }
   </style>
 </head>
-<body class="bg-dark text-white">
+<body class="bg-white text-gray-900">
   
   <!-- Navigation -->
-  <nav class="fixed w-full z-50 bg-dark/80 backdrop-blur-lg border-b border-white/10">
+  <nav class="fixed w-full z-50 bg-white/80 backdrop-blur-lg border-b border-gray-100">
     <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
       <div class="flex items-center gap-3">
         <img src="images/logo.png" alt="SiteStream" class="h-10 w-10">
-        <span class="text-xl font-bold">SiteStream</span>
+        <span class="text-xl font-bold text-gray-900">SiteStream</span>
       </div>
       <div class="hidden md:flex items-center gap-8">
-        <a href="#features" class="text-gray-300 hover:text-primary transition">Features</a>
-        <a href="#pricing" class="text-gray-300 hover:text-primary transition">Pricing</a>
-        <a href="#faq" class="text-gray-300 hover:text-primary transition">FAQ</a>
+        <a href="#features" class="text-gray-600 hover:text-primary transition">Features</a>
+        <a href="#pricing" class="text-gray-600 hover:text-primary transition">Pricing</a>
+        <a href="#faq" class="text-gray-600 hover:text-primary transition">FAQ</a>
       </div>
       <div class="flex items-center gap-4">
-        <a href="https://apps.apple.com/app/sitestream" class="hidden sm:block text-gray-300 hover:text-white transition">Download</a>
-        <a href="https://app.sitestream.au" class="bg-primary hover:bg-primary-dark px-5 py-2 rounded-lg font-semibold transition">Get Started</a>
+        <a href="https://apps.apple.com/app/sitestream" class="hidden sm:block text-gray-600 hover:text-gray-900 transition">Download</a>
+        <a href="https://app.sitestream.au" class="bg-primary hover:bg-primary-dark text-white px-5 py-2 rounded-full font-semibold transition">Get Started</a>
       </div>
     </div>
   </nav>
 
   <!-- Hero Section -->
-  <section class="gradient-bg min-h-screen flex items-center pt-20">
+  <section class="hero-gradient min-h-screen flex items-center pt-20">
     <div class="max-w-7xl mx-auto px-6 py-20 grid lg:grid-cols-2 gap-12 items-center">
       <div>
-        <div class="inline-flex items-center gap-2 bg-primary/10 border border-primary/30 rounded-full px-4 py-2 mb-6">
+        <div class="inline-flex items-center gap-2 bg-primary/10 rounded-full px-4 py-2 mb-6">
           <span class="w-2 h-2 bg-primary rounded-full animate-pulse"></span>
           <span class="text-primary text-sm font-medium">AI-Powered Construction Management</span>
         </div>
-        <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight mb-6">
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight mb-6 text-gray-900">
           RFIs Answered.<br>
-          <span class="text-primary">Projects Streamlined.</span>
+          <span class="gradient-text">Projects Streamlined.</span>
         </h1>
-        <p class="text-xl text-gray-300 mb-8 max-w-xl">
+        <p class="text-xl text-gray-600 mb-8 max-w-xl">
           Stop chasing paperwork. SiteStream connects contractors and engineers in real-time, with AI insights that cut response times in half.
         </p>
         <div class="flex flex-col sm:flex-row gap-4">
-          <a href="https://apps.apple.com/app/sitestream" class="flex items-center justify-center gap-3 bg-white text-dark px-6 py-4 rounded-xl font-semibold hover:bg-gray-100 transition">
+          <a href="https://apps.apple.com/app/sitestream" class="flex items-center justify-center gap-3 bg-gray-900 text-white px-6 py-4 rounded-full font-semibold hover:bg-gray-800 transition shadow-lg">
             <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
             Download for iOS
           </a>
-          <a href="#features" class="flex items-center justify-center gap-2 border border-white/20 px-6 py-4 rounded-xl font-semibold hover:bg-white/5 transition">
+          <a href="#features" class="flex items-center justify-center gap-2 border-2 border-gray-200 text-gray-700 px-6 py-4 rounded-full font-semibold hover:border-primary hover:text-primary transition">
             See How It Works
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
           </a>
         </div>
         <div class="mt-10 flex items-center gap-6">
           <div class="flex -space-x-3">
-            <div class="w-10 h-10 rounded-full bg-gradient-to-br from-teal-400 to-blue-500 border-2 border-dark"></div>
-            <div class="w-10 h-10 rounded-full bg-gradient-to-br from-orange-400 to-red-500 border-2 border-dark"></div>
-            <div class="w-10 h-10 rounded-full bg-gradient-to-br from-purple-400 to-pink-500 border-2 border-dark"></div>
+            <div class="w-10 h-10 rounded-full bg-gradient-to-br from-teal-400 to-cyan-500 border-2 border-white shadow"></div>
+            <div class="w-10 h-10 rounded-full bg-gradient-to-br from-orange-400 to-red-500 border-2 border-white shadow"></div>
+            <div class="w-10 h-10 rounded-full bg-gradient-to-br from-purple-400 to-pink-500 border-2 border-white shadow"></div>
           </div>
           <div>
-            <p class="text-sm text-gray-400">Trusted by contractors across Australia</p>
+            <p class="text-sm text-gray-500">Trusted by contractors across Australia</p>
             <p class="text-primary font-semibold">Join 500+ construction professionals</p>
           </div>
         </div>
       </div>
       <div class="relative">
-        <div class="absolute inset-0 bg-primary/20 blur-3xl rounded-full"></div>
-        <img src="images/hero-mockup.png" alt="SiteStream App" class="relative z-10 w-full max-w-lg mx-auto glow rounded-3xl" onerror="this.src='https://placehold.co/600x800/1E293B/14B8A6?text=SiteStream+App'">
+        <div class="absolute inset-0 bg-primary/10 blur-3xl rounded-full"></div>
+        <img src="images/hero-mockup.png" alt="SiteStream App" class="relative z-10 w-full max-w-lg mx-auto rounded-3xl shadow-2xl" onerror="this.src='https://placehold.co/600x800/F0FDFA/14B8A6?text=SiteStream+App'">
       </div>
     </div>
   </section>
 
   <!-- Features Section -->
-  <section id="features" class="py-24 bg-dark-light">
+  <section id="features" class="py-24 bg-white">
     <div class="max-w-7xl mx-auto px-6">
       <div class="text-center mb-16">
-        <h2 class="text-3xl md:text-4xl font-bold mb-4">Everything You Need to <span class="text-primary">Move Faster</span></h2>
-        <p class="text-gray-400 text-lg max-w-2xl mx-auto">Built by engineers, for the construction industry. Every feature designed to eliminate delays and keep projects on track.</p>
+        <h2 class="text-3xl md:text-4xl font-bold mb-4 text-gray-900">Everything You Need to <span class="gradient-text">Move Faster</span></h2>
+        <p class="text-gray-600 text-lg max-w-2xl mx-auto">Built by engineers, for the construction industry. Every feature designed to eliminate delays and keep projects on track.</p>
       </div>
       
       <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
         <!-- Feature 1 -->
-        <div class="bg-dark p-8 rounded-2xl border border-white/10 card-hover">
-          <div class="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center mb-6">
+        <div class="bg-gray-50 p-8 rounded-3xl card-hover">
+          <div class="w-14 h-14 bg-primary/10 rounded-2xl flex items-center justify-center mb-6">
             <svg class="w-7 h-7 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
           </div>
-          <h3 class="text-xl font-bold mb-3">Instant RFI Tracking</h3>
-          <p class="text-gray-400">Create, assign, and track RFIs in seconds. Never lose a request in email threads again.</p>
+          <h3 class="text-xl font-bold mb-3 text-gray-900">Instant RFI Tracking</h3>
+          <p class="text-gray-600">Create, assign, and track RFIs in seconds. Never lose a request in email threads again.</p>
         </div>
         
         <!-- Feature 2 -->
-        <div class="bg-dark p-8 rounded-2xl border border-white/10 card-hover">
-          <div class="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center mb-6">
+        <div class="bg-gray-50 p-8 rounded-3xl card-hover">
+          <div class="w-14 h-14 bg-primary/10 rounded-2xl flex items-center justify-center mb-6">
             <svg class="w-7 h-7 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
           </div>
-          <h3 class="text-xl font-bold mb-3">AI-Powered Insights</h3>
-          <p class="text-gray-400">Get intelligent technical summaries and plain-English explanations. Engineers and contractors speak the same language.</p>
+          <h3 class="text-xl font-bold mb-3 text-gray-900">AI-Powered Insights</h3>
+          <p class="text-gray-600">Get intelligent technical summaries and plain-English explanations. Engineers and contractors speak the same language.</p>
         </div>
         
         <!-- Feature 3 -->
-        <div class="bg-dark p-8 rounded-2xl border border-white/10 card-hover">
-          <div class="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center mb-6">
+        <div class="bg-gray-50 p-8 rounded-3xl card-hover">
+          <div class="w-14 h-14 bg-primary/10 rounded-2xl flex items-center justify-center mb-6">
             <svg class="w-7 h-7 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
           </div>
-          <h3 class="text-xl font-bold mb-3">Simple Invoicing</h3>
-          <p class="text-gray-400">Generate professional PDF invoices with your branding. Track payments and manage billing in one place.</p>
+          <h3 class="text-xl font-bold mb-3 text-gray-900">Simple Invoicing</h3>
+          <p class="text-gray-600">Generate professional PDF invoices with your branding. Track payments and manage billing in one place.</p>
         </div>
         
         <!-- Feature 4 -->
-        <div class="bg-dark p-8 rounded-2xl border border-white/10 card-hover">
-          <div class="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center mb-6">
+        <div class="bg-gray-50 p-8 rounded-3xl card-hover">
+          <div class="w-14 h-14 bg-primary/10 rounded-2xl flex items-center justify-center mb-6">
             <svg class="w-7 h-7 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
           </div>
-          <h3 class="text-xl font-bold mb-3">Photo Documentation</h3>
-          <p class="text-gray-400">Attach site photos directly to RFIs. Visual context helps engineers respond faster and more accurately.</p>
+          <h3 class="text-xl font-bold mb-3 text-gray-900">Photo Documentation</h3>
+          <p class="text-gray-600">Attach site photos directly to RFIs. Visual context helps engineers respond faster and more accurately.</p>
         </div>
         
         <!-- Feature 5 -->
-        <div class="bg-dark p-8 rounded-2xl border border-white/10 card-hover">
-          <div class="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center mb-6">
+        <div class="bg-gray-50 p-8 rounded-3xl card-hover">
+          <div class="w-14 h-14 bg-primary/10 rounded-2xl flex items-center justify-center mb-6">
             <svg class="w-7 h-7 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
           </div>
-          <h3 class="text-xl font-bold mb-3">Team Collaboration</h3>
-          <p class="text-gray-400">Invite your team, assign roles, and keep everyone aligned. Real-time updates mean no one's left behind.</p>
+          <h3 class="text-xl font-bold mb-3 text-gray-900">Team Collaboration</h3>
+          <p class="text-gray-600">Invite your team, assign roles, and keep everyone aligned. Real-time updates mean no one's left behind.</p>
         </div>
         
         <!-- Feature 6 -->
-        <div class="bg-dark p-8 rounded-2xl border border-white/10 card-hover">
-          <div class="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center mb-6">
+        <div class="bg-gray-50 p-8 rounded-3xl card-hover">
+          <div class="w-14 h-14 bg-primary/10 rounded-2xl flex items-center justify-center mb-6">
             <svg class="w-7 h-7 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
           </div>
-          <h3 class="text-xl font-bold mb-3">Enterprise Security</h3>
-          <p class="text-gray-400">Bank-grade encryption, role-based access, and complete audit trails. Your data is protected.</p>
+          <h3 class="text-xl font-bold mb-3 text-gray-900">Enterprise Security</h3>
+          <p class="text-gray-600">Bank-grade encryption, role-based access, and complete audit trails. Your data is protected.</p>
         </div>
       </div>
     </div>
   </section>
 
   <!-- Social Proof -->
-  <section class="py-16 bg-dark border-y border-white/10">
+  <section class="py-16 bg-gray-50">
     <div class="max-w-7xl mx-auto px-6">
       <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
         <div>
-          <p class="text-4xl font-bold text-primary">50%</p>
-          <p class="text-gray-400 mt-2">Faster RFI Response</p>
+          <p class="text-4xl font-bold gradient-text">50%</p>
+          <p class="text-gray-600 mt-2">Faster RFI Response</p>
         </div>
         <div>
-          <p class="text-4xl font-bold text-primary">500+</p>
-          <p class="text-gray-400 mt-2">Active Users</p>
+          <p class="text-4xl font-bold gradient-text">500+</p>
+          <p class="text-gray-600 mt-2">Active Users</p>
         </div>
         <div>
-          <p class="text-4xl font-bold text-primary">10K+</p>
-          <p class="text-gray-400 mt-2">RFIs Processed</p>
+          <p class="text-4xl font-bold gradient-text">10K+</p>
+          <p class="text-gray-600 mt-2">RFIs Processed</p>
         </div>
         <div>
-          <p class="text-4xl font-bold text-primary">99.9%</p>
-          <p class="text-gray-400 mt-2">Uptime</p>
+          <p class="text-4xl font-bold gradient-text">99.9%</p>
+          <p class="text-gray-600 mt-2">Uptime</p>
         </div>
       </div>
     </div>
   </section>
 
   <!-- Pricing Section -->
-  <section id="pricing" class="py-24 gradient-bg">
+  <section id="pricing" class="py-24 bg-white">
     <div class="max-w-7xl mx-auto px-6">
       <div class="text-center mb-16">
-        <h2 class="text-3xl md:text-4xl font-bold mb-4">Simple, Transparent <span class="text-primary">Pricing</span></h2>
-        <p class="text-gray-400 text-lg max-w-2xl mx-auto">Start free, upgrade when you're ready. No hidden fees, no surprises.</p>
+        <h2 class="text-3xl md:text-4xl font-bold mb-4 text-gray-900">Simple, Transparent <span class="gradient-text">Pricing</span></h2>
+        <p class="text-gray-600 text-lg max-w-2xl mx-auto">Start free, upgrade when you're ready. No hidden fees, no surprises.</p>
       </div>
       
       <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
         <!-- Free Plan -->
-        <div class="bg-dark-light p-8 rounded-2xl border border-white/10">
-          <h3 class="text-xl font-bold mb-2">Free</h3>
-          <p class="text-gray-400 mb-6">Perfect for getting started</p>
+        <div class="bg-gray-50 p-8 rounded-3xl">
+          <h3 class="text-xl font-bold mb-2 text-gray-900">Free</h3>
+          <p class="text-gray-500 mb-6">Perfect for getting started</p>
           <div class="mb-6">
-            <span class="text-4xl font-bold">$0</span>
-            <span class="text-gray-400">/month</span>
+            <span class="text-4xl font-bold text-gray-900">$0</span>
+            <span class="text-gray-500">/month</span>
           </div>
           <ul class="space-y-3 mb-8">
-            <li class="flex items-center gap-3 text-gray-300">
-              <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+            <li class="flex items-center gap-3 text-gray-600">
+              <svg class="w-5 h-5 text-primary flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
               1 Project
             </li>
-            <li class="flex items-center gap-3 text-gray-300">
-              <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+            <li class="flex items-center gap-3 text-gray-600">
+              <svg class="w-5 h-5 text-primary flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
               2 Team Members
             </li>
-            <li class="flex items-center gap-3 text-gray-300">
-              <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+            <li class="flex items-center gap-3 text-gray-600">
+              <svg class="w-5 h-5 text-primary flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
               Basic AI Insights
             </li>
-            <li class="flex items-center gap-3 text-gray-300">
-              <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+            <li class="flex items-center gap-3 text-gray-600">
+              <svg class="w-5 h-5 text-primary flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
               5% Invoice Fee
             </li>
           </ul>
-          <a href="https://app.sitestream.au" class="block text-center border border-white/20 py-3 rounded-lg font-semibold hover:bg-white/5 transition">Get Started Free</a>
+          <a href="https://app.sitestream.au" class="block text-center border-2 border-gray-200 text-gray-700 py-3 rounded-full font-semibold hover:border-primary hover:text-primary transition">Get Started Free</a>
         </div>
         
         <!-- Pro Plan -->
-        <div class="bg-primary/10 p-8 rounded-2xl border-2 border-primary relative">
-          <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-primary px-4 py-1 rounded-full text-sm font-semibold">Most Popular</div>
-          <h3 class="text-xl font-bold mb-2">Pro</h3>
-          <p class="text-gray-400 mb-6">For growing teams</p>
+        <div class="bg-primary p-8 rounded-3xl relative shadow-xl shadow-primary/20 scale-105">
+          <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-gray-900 text-white px-4 py-1 rounded-full text-sm font-semibold">Most Popular</div>
+          <h3 class="text-xl font-bold mb-2 text-white">Pro</h3>
+          <p class="text-primary-light mb-6">For growing teams</p>
           <div class="mb-6">
-            <span class="text-4xl font-bold">$29</span>
-            <span class="text-gray-400">/month</span>
+            <span class="text-4xl font-bold text-white">$29</span>
+            <span class="text-primary-light">/month</span>
           </div>
           <ul class="space-y-3 mb-8">
-            <li class="flex items-center gap-3 text-gray-300">
-              <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+            <li class="flex items-center gap-3 text-white">
+              <svg class="w-5 h-5 text-white flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
               10 Projects
             </li>
-            <li class="flex items-center gap-3 text-gray-300">
-              <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+            <li class="flex items-center gap-3 text-white">
+              <svg class="w-5 h-5 text-white flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
               10 Team Members
             </li>
-            <li class="flex items-center gap-3 text-gray-300">
-              <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+            <li class="flex items-center gap-3 text-white">
+              <svg class="w-5 h-5 text-white flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
               Advanced AI Insights
             </li>
-            <li class="flex items-center gap-3 text-gray-300">
-              <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-              <strong>No Invoice Fees</strong>
+            <li class="flex items-center gap-3 text-white font-semibold">
+              <svg class="w-5 h-5 text-white flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+              No Invoice Fees
             </li>
-            <li class="flex items-center gap-3 text-gray-300">
-              <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+            <li class="flex items-center gap-3 text-white">
+              <svg class="w-5 h-5 text-white flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
               Priority Support
             </li>
           </ul>
-          <a href="https://app.sitestream.au" class="block text-center bg-primary hover:bg-primary-dark py-3 rounded-lg font-semibold transition">Start Pro Trial</a>
+          <a href="https://app.sitestream.au" class="block text-center bg-white text-primary py-3 rounded-full font-semibold hover:bg-gray-100 transition">Start Pro Trial</a>
         </div>
         
         <!-- Enterprise Plan -->
-        <div class="bg-dark-light p-8 rounded-2xl border border-white/10">
-          <h3 class="text-xl font-bold mb-2">Enterprise</h3>
-          <p class="text-gray-400 mb-6">For large organizations</p>
+        <div class="bg-gray-50 p-8 rounded-3xl">
+          <h3 class="text-xl font-bold mb-2 text-gray-900">Enterprise</h3>
+          <p class="text-gray-500 mb-6">For large organizations</p>
           <div class="mb-6">
-            <span class="text-4xl font-bold">$79</span>
-            <span class="text-gray-400">/month</span>
+            <span class="text-4xl font-bold text-gray-900">$79</span>
+            <span class="text-gray-500">/month</span>
           </div>
           <ul class="space-y-3 mb-8">
-            <li class="flex items-center gap-3 text-gray-300">
-              <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+            <li class="flex items-center gap-3 text-gray-600">
+              <svg class="w-5 h-5 text-primary flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
               Unlimited Projects
             </li>
-            <li class="flex items-center gap-3 text-gray-300">
-              <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+            <li class="flex items-center gap-3 text-gray-600">
+              <svg class="w-5 h-5 text-primary flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
               Unlimited Team Members
             </li>
-            <li class="flex items-center gap-3 text-gray-300">
-              <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+            <li class="flex items-center gap-3 text-gray-600">
+              <svg class="w-5 h-5 text-primary flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
               Full AI Suite
             </li>
-            <li class="flex items-center gap-3 text-gray-300">
-              <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+            <li class="flex items-center gap-3 text-gray-600">
+              <svg class="w-5 h-5 text-primary flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
               1% Invoice Fee
             </li>
-            <li class="flex items-center gap-3 text-gray-300">
-              <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+            <li class="flex items-center gap-3 text-gray-600">
+              <svg class="w-5 h-5 text-primary flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
               Dedicated Support
             </li>
           </ul>
-          <a href="https://app.sitestream.au" class="block text-center border border-white/20 py-3 rounded-lg font-semibold hover:bg-white/5 transition">Contact Sales</a>
+          <a href="https://app.sitestream.au" class="block text-center border-2 border-gray-200 text-gray-700 py-3 rounded-full font-semibold hover:border-primary hover:text-primary transition">Contact Sales</a>
         </div>
       </div>
     </div>
   </section>
 
   <!-- FAQ Section -->
-  <section id="faq" class="py-24 bg-dark-light">
+  <section id="faq" class="py-24 bg-gray-50">
     <div class="max-w-3xl mx-auto px-6">
       <div class="text-center mb-16">
-        <h2 class="text-3xl md:text-4xl font-bold mb-4">Frequently Asked <span class="text-primary">Questions</span></h2>
+        <h2 class="text-3xl md:text-4xl font-bold mb-4 text-gray-900">Frequently Asked <span class="gradient-text">Questions</span></h2>
       </div>
       
       <div class="space-y-4">
-        <details class="bg-dark rounded-xl p-6 border border-white/10 group">
-          <summary class="flex items-center justify-between cursor-pointer font-semibold">
+        <details class="bg-white rounded-2xl p-6 shadow-sm group">
+          <summary class="flex items-center justify-between cursor-pointer font-semibold text-gray-900">
             What is an RFI?
             <svg class="w-5 h-5 text-primary group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
           </summary>
-          <p class="mt-4 text-gray-400">A Request for Information (RFI) is a formal question from a contractor to an engineer or architect seeking clarification on drawings, specifications, or other project documentation. SiteStream digitizes this process.</p>
+          <p class="mt-4 text-gray-600">A Request for Information (RFI) is a formal question from a contractor to an engineer or architect seeking clarification on drawings, specifications, or other project documentation. SiteStream digitizes this process.</p>
         </details>
         
-        <details class="bg-dark rounded-xl p-6 border border-white/10 group">
-          <summary class="flex items-center justify-between cursor-pointer font-semibold">
+        <details class="bg-white rounded-2xl p-6 shadow-sm group">
+          <summary class="flex items-center justify-between cursor-pointer font-semibold text-gray-900">
             How does AI improve RFI responses?
             <svg class="w-5 h-5 text-primary group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
           </summary>
-          <p class="mt-4 text-gray-400">Our AI analyzes RFI content and attached photos to provide engineers with technical context, and translates complex engineering responses into plain English for contractors. This reduces back-and-forth and speeds up resolution.</p>
+          <p class="mt-4 text-gray-600">Our AI analyzes RFI content and attached photos to provide engineers with technical context, and translates complex engineering responses into plain English for contractors. This reduces back-and-forth and speeds up resolution.</p>
         </details>
         
-        <details class="bg-dark rounded-xl p-6 border border-white/10 group">
-          <summary class="flex items-center justify-between cursor-pointer font-semibold">
+        <details class="bg-white rounded-2xl p-6 shadow-sm group">
+          <summary class="flex items-center justify-between cursor-pointer font-semibold text-gray-900">
             Is my data secure?
             <svg class="w-5 h-5 text-primary group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
           </summary>
-          <p class="mt-4 text-gray-400">Absolutely. We use bank-grade encryption, secure cloud infrastructure (Supabase), and role-based access controls. Your project data is never shared with third parties.</p>
+          <p class="mt-4 text-gray-600">Absolutely. We use bank-grade encryption, secure cloud infrastructure (Supabase), and role-based access controls. Your project data is never shared with third parties.</p>
         </details>
         
-        <details class="bg-dark rounded-xl p-6 border border-white/10 group">
-          <summary class="flex items-center justify-between cursor-pointer font-semibold">
+        <details class="bg-white rounded-2xl p-6 shadow-sm group">
+          <summary class="flex items-center justify-between cursor-pointer font-semibold text-gray-900">
             Can I try before I buy?
             <svg class="w-5 h-5 text-primary group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
           </summary>
-          <p class="mt-4 text-gray-400">Yes! Our Free plan lets you manage 1 project with 2 team members at no cost. Upgrade to Pro or Enterprise when you need more capacity.</p>
+          <p class="mt-4 text-gray-600">Yes! Our Free plan lets you manage 1 project with 2 team members at no cost. Upgrade to Pro or Enterprise when you need more capacity.</p>
         </details>
         
-        <details class="bg-dark rounded-xl p-6 border border-white/10 group">
-          <summary class="flex items-center justify-between cursor-pointer font-semibold">
+        <details class="bg-white rounded-2xl p-6 shadow-sm group">
+          <summary class="flex items-center justify-between cursor-pointer font-semibold text-gray-900">
             What's the invoice fee?
             <svg class="w-5 h-5 text-primary group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
           </summary>
-          <p class="mt-4 text-gray-400">Free plans have a 5% platform fee on invoices generated through SiteStream. Pro plans have no fees, and Enterprise has just 1%. This helps us keep the free tier available for everyone.</p>
+          <p class="mt-4 text-gray-600">Free plans have a 5% platform fee on invoices generated through SiteStream. Pro plans have no fees, and Enterprise has just 1%. This helps us keep the free tier available for everyone.</p>
         </details>
       </div>
     </div>
   </section>
 
   <!-- CTA Section -->
-  <section class="py-24 gradient-bg">
+  <section class="py-24 bg-white">
     <div class="max-w-4xl mx-auto px-6 text-center">
-      <h2 class="text-3xl md:text-4xl font-bold mb-6">Ready to Streamline Your Site?</h2>
-      <p class="text-xl text-gray-300 mb-8">Join hundreds of construction professionals who've cut their RFI response times in half.</p>
+      <h2 class="text-3xl md:text-4xl font-bold mb-6 text-gray-900">Ready to Streamline Your Site?</h2>
+      <p class="text-xl text-gray-600 mb-8">Join hundreds of construction professionals who've cut their RFI response times in half.</p>
       <div class="flex flex-col sm:flex-row gap-4 justify-center">
-        <a href="https://apps.apple.com/app/sitestream" class="flex items-center justify-center gap-3 bg-white text-dark px-8 py-4 rounded-xl font-semibold hover:bg-gray-100 transition">
+        <a href="https://apps.apple.com/app/sitestream" class="flex items-center justify-center gap-3 bg-gray-900 text-white px-8 py-4 rounded-full font-semibold hover:bg-gray-800 transition shadow-lg">
           <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
           Download for iOS
         </a>
-        <a href="https://app.sitestream.au" class="border border-white/20 px-8 py-4 rounded-xl font-semibold hover:bg-white/5 transition">
+        <a href="https://app.sitestream.au" class="border-2 border-gray-200 text-gray-700 px-8 py-4 rounded-full font-semibold hover:border-primary hover:text-primary transition">
           Open Web App
         </a>
       </div>
@@ -362,41 +361,41 @@
   </section>
 
   <!-- Footer -->
-  <footer class="bg-dark py-12 border-t border-white/10">
+  <footer class="bg-gray-50 py-12 border-t border-gray-100">
     <div class="max-w-7xl mx-auto px-6">
       <div class="grid md:grid-cols-4 gap-8 mb-8">
         <div>
           <div class="flex items-center gap-3 mb-4">
             <img src="images/logo.png" alt="SiteStream" class="h-8 w-8">
-            <span class="text-lg font-bold">SiteStream</span>
+            <span class="text-lg font-bold text-gray-900">SiteStream</span>
           </div>
-          <p class="text-gray-400 text-sm">Construction site management made simple. Built in Australia, for Australian builders.</p>
+          <p class="text-gray-500 text-sm">Construction site management made simple. Built in Australia, for Australian builders.</p>
         </div>
         <div>
-          <h4 class="font-semibold mb-4">Product</h4>
-          <ul class="space-y-2 text-gray-400 text-sm">
+          <h4 class="font-semibold mb-4 text-gray-900">Product</h4>
+          <ul class="space-y-2 text-gray-500 text-sm">
             <li><a href="#features" class="hover:text-primary transition">Features</a></li>
             <li><a href="#pricing" class="hover:text-primary transition">Pricing</a></li>
             <li><a href="#faq" class="hover:text-primary transition">FAQ</a></li>
           </ul>
         </div>
         <div>
-          <h4 class="font-semibold mb-4">Company</h4>
-          <ul class="space-y-2 text-gray-400 text-sm">
+          <h4 class="font-semibold mb-4 text-gray-900">Company</h4>
+          <ul class="space-y-2 text-gray-500 text-sm">
             <li><a href="mailto:support@sitestream.au" class="hover:text-primary transition">Contact</a></li>
             <li><a href="/privacy" class="hover:text-primary transition">Privacy Policy</a></li>
             <li><a href="/terms" class="hover:text-primary transition">Terms of Service</a></li>
           </ul>
         </div>
         <div>
-          <h4 class="font-semibold mb-4">Connect</h4>
-          <ul class="space-y-2 text-gray-400 text-sm">
+          <h4 class="font-semibold mb-4 text-gray-900">Connect</h4>
+          <ul class="space-y-2 text-gray-500 text-sm">
             <li><a href="https://twitter.com/sitestreamau" class="hover:text-primary transition">Twitter</a></li>
             <li><a href="https://linkedin.com/company/sitestream" class="hover:text-primary transition">LinkedIn</a></li>
           </ul>
         </div>
       </div>
-      <div class="pt-8 border-t border-white/10 text-center text-gray-500 text-sm">
+      <div class="pt-8 border-t border-gray-200 text-center text-gray-400 text-sm">
         <p>&copy; 2026 SiteStream. All rights reserved. ABN: XX XXX XXX XXX</p>
       </div>
     </div>
