@@ -163,7 +163,20 @@
             throw error;
           }
         } else {
-          formMessage.textContent = "🎉 You're on the list! We'll email you when we launch.";
+          // Send confirmation email
+          try {
+            await supabase.functions.invoke('send-email', {
+              body: {
+                type: 'waitlist_confirmation',
+                to: email,
+                data: {}
+              }
+            });
+          } catch (emailErr) {
+            console.error('Failed to send confirmation email:', emailErr);
+          }
+          
+          formMessage.textContent = "🎉 You're on the list! Check your email for confirmation.";
           formMessage.className = 'text-sm text-green-600';
           document.getElementById('email').value = '';
           getWaitlistCount(); // Refresh count
