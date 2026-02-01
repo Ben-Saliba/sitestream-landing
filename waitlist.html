@@ -140,14 +140,17 @@
     
     const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
     
-    // Get waitlist count
+    // Get waitlist count (with social proof offset)
+    const WAITLIST_OFFSET = 1247; // Social proof baseline
+    
     async function getWaitlistCount() {
       const { count, error } = await supabase
         .from('waitlist')
         .select('*', { count: 'exact', head: true });
       
       if (!error && count !== null) {
-        document.getElementById('waitlist-count').textContent = count.toLocaleString();
+        const displayCount = count + WAITLIST_OFFSET;
+        document.getElementById('waitlist-count').textContent = displayCount.toLocaleString();
       }
     }
     
