@@ -144,13 +144,26 @@
     const WAITLIST_OFFSET = 1247; // Social proof baseline
     
     async function getWaitlistCount() {
-      const { count, error } = await supabase
-        .from('waitlist')
-        .select('*', { count: 'exact', head: true });
-      
-      if (!error && count !== null) {
-        const displayCount = count + WAITLIST_OFFSET;
-        document.getElementById('waitlist-count').textContent = displayCount.toLocaleString();
+      try {
+        // Use select with count - more reliable in Supabase JS v2
+        const { data, count, error } = await supabase
+          .from('waitlist')
+          .select('id', { count: 'exact' });
+        
+        if (!error && count !== null && count !== undefined) {
+          const displayCount = count + WAITLIST_OFFSET;
+          document.getElementById('waitlist-count').textContent = displayCount.toLocaleString() + '+';
+        } else if (data && Array.isArray(data)) {
+          // Fallback: count the returned rows
+          const displayCount = data.length + WAITLIST_OFFSET;
+          document.getElementById('waitlist-count').textContent = displayCount.toLocaleString() + '+';
+        } else {
+          // Final fallback: show base number
+          document.getElementById('waitlist-count').textContent = WAITLIST_OFFSET.toLocaleString() + '+';
+        }
+      } catch (err) {
+        console.error('Count error:', err);
+        document.getElementById('waitlist-count').textContent = WAITLIST_OFFSET.toLocaleString() + '+';
       }
     }
     
