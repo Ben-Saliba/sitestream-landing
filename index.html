@@ -26,7 +26,34 @@
     .gradient-text { background: linear-gradient(135deg, #14B8A6 0%, #0D9488 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
     .card-hover { transition: transform 0.3s, box-shadow 0.3s; }
     .card-hover:hover { transform: translateY(-4px); box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08); }
-    .hero-gradient { background: linear-gradient(180deg, #F0FDFA 0%, #FFFFFF 100%); }
+    
+    /* Hero Animation */
+    @keyframes float {
+      0%, 100% { transform: translateY(0px) rotate(-2deg); }
+      50% { transform: translateY(-20px) rotate(-2deg); }
+    }
+    @keyframes glow-pulse {
+      0%, 100% { opacity: 0.4; transform: scale(1); }
+      50% { opacity: 0.6; transform: scale(1.05); }
+    }
+    @keyframes shimmer {
+      0% { background-position: -200% 0; }
+      100% { background-position: 200% 0; }
+    }
+    .hero-phone {
+      animation: float 6s ease-in-out infinite;
+    }
+    .hero-glow {
+      animation: glow-pulse 4s ease-in-out infinite;
+    }
+    .shimmer-text {
+      background: linear-gradient(90deg, #14B8A6 0%, #5EEAD4 50%, #14B8A6 100%);
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: shimmer 3s linear infinite;
+    }
   </style>
 </head>
 <body class="bg-white text-gray-900">
@@ -50,47 +77,46 @@
     </div>
   </nav>
 
-  <!-- Hero Section -->
-  <section class="hero-gradient min-h-screen flex items-center pt-20">
-    <div class="max-w-7xl mx-auto px-6 py-20 grid lg:grid-cols-2 gap-12 items-center">
-      <div>
-        <div class="inline-flex items-center gap-2 bg-primary/10 rounded-full px-4 py-2 mb-6">
-          <span class="w-2 h-2 bg-primary rounded-full animate-pulse"></span>
-          <span class="text-primary text-sm font-medium">AI-Powered Construction Management</span>
-        </div>
-        <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight mb-6 text-gray-900">
-          RFIs Answered.<br>
-          <span class="gradient-text">Projects Streamlined.</span>
-        </h1>
-        <p class="text-xl text-gray-600 mb-8 max-w-xl">
-          Stop chasing paperwork. SiteStream connects contractors and engineers in real-time, with AI insights that cut response times in half.
-        </p>
-        <div class="flex flex-col sm:flex-row gap-4">
-          <a href="https://apps.apple.com/app/sitestream" class="flex items-center justify-center gap-3 bg-gray-900 text-white px-6 py-4 rounded-full font-semibold hover:bg-gray-800 transition shadow-lg">
-            <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
-            Download for iOS
-          </a>
-          <a href="#features" class="flex items-center justify-center gap-2 border-2 border-gray-200 text-gray-700 px-6 py-4 rounded-full font-semibold hover:border-primary hover:text-primary transition">
-            See How It Works
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-          </a>
-        </div>
-        <div class="mt-10 flex items-center gap-6">
-          <div class="flex -space-x-3">
-            <div class="w-10 h-10 rounded-full bg-gradient-to-br from-teal-400 to-cyan-500 border-2 border-white shadow"></div>
-            <div class="w-10 h-10 rounded-full bg-gradient-to-br from-orange-400 to-red-500 border-2 border-white shadow"></div>
-            <div class="w-10 h-10 rounded-full bg-gradient-to-br from-purple-400 to-pink-500 border-2 border-white shadow"></div>
-          </div>
-          <div>
-            <p class="text-sm text-gray-500">Trusted by contractors across Australia</p>
-            <p class="text-primary font-semibold">Join 500+ construction professionals</p>
-          </div>
-        </div>
+  <!-- Hero Section - Centered Layout -->
+  <section class="min-h-screen flex flex-col items-center justify-center pt-20 pb-12 px-6 bg-gradient-to-b from-gray-50 to-white">
+    
+    <!-- Phone Mockup - Centered with Animation -->
+    <div class="relative mb-12">
+      <!-- Glow Effect -->
+      <div class="absolute inset-0 bg-primary/20 blur-[100px] rounded-full hero-glow"></div>
+      
+      <!-- Phone Image -->
+      <img src="images/hero-branded.png" alt="SiteStream App" class="relative z-10 w-72 md:w-80 lg:w-96 hero-phone drop-shadow-2xl" onerror="this.src='https://placehold.co/400x800/F0FDFA/14B8A6?text=SiteStream'">
+    </div>
+    
+    <!-- Text Content - Below Phone -->
+    <div class="text-center max-w-3xl">
+      <div class="inline-flex items-center gap-2 bg-primary/10 rounded-full px-4 py-2 mb-6">
+        <span class="w-2 h-2 bg-primary rounded-full animate-pulse"></span>
+        <span class="text-primary text-sm font-medium">AI-Powered Construction Management</span>
       </div>
-      <div class="relative">
-        <div class="absolute inset-0 bg-primary/10 blur-3xl rounded-full"></div>
-        <img src="images/hero-branded.png" alt="SiteStream App" class="relative z-10 w-full max-w-lg mx-auto rounded-3xl shadow-2xl" onerror="this.src='https://placehold.co/600x800/F0FDFA/14B8A6?text=SiteStream+App'">
+      
+      <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight mb-6 text-gray-900">
+        RFIs Answered.<br>
+        <span class="shimmer-text">Projects Streamlined.</span>
+      </h1>
+      
+      <p class="text-xl text-gray-600 mb-10 max-w-2xl mx-auto">
+        Stop chasing paperwork. SiteStream connects contractors and engineers in real-time, with AI insights that cut response times in half.
+      </p>
+      
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="https://apps.apple.com/app/sitestream" class="flex items-center justify-center gap-3 bg-gray-900 text-white px-8 py-4 rounded-full font-semibold hover:bg-gray-800 transition shadow-lg">
+          <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+          Download for iOS
+        </a>
+        <a href="#features" class="flex items-center justify-center gap-2 border-2 border-gray-200 text-gray-700 px-8 py-4 rounded-full font-semibold hover:border-primary hover:text-primary transition">
+          Learn More
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+        </a>
       </div>
+      
+      <p class="mt-10 text-sm text-gray-500">Trusted by 500+ construction professionals across Australia</p>
     </div>
   </section>
 
@@ -99,7 +125,7 @@
     <div class="max-w-7xl mx-auto px-6">
       <div class="text-center mb-16">
         <h2 class="text-3xl md:text-4xl font-bold mb-4 text-gray-900">Everything You Need to <span class="gradient-text">Move Faster</span></h2>
-        <p class="text-gray-600 text-lg max-w-2xl mx-auto">Built by engineers, for the construction industry. Every feature designed to eliminate delays and keep projects on track.</p>
+        <p class="text-gray-600 text-lg max-w-2xl mx-auto">Built by engineers, for the construction industry. Every feature designed to eliminate delays.</p>
       </div>
       
       <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -118,7 +144,7 @@
             <svg class="w-7 h-7 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
           </div>
           <h3 class="text-xl font-bold mb-3 text-gray-900">AI-Powered Insights</h3>
-          <p class="text-gray-600">Get intelligent technical summaries and plain-English explanations. Engineers and contractors speak the same language.</p>
+          <p class="text-gray-600">Intelligent technical summaries and plain-English explanations. Engineers and contractors finally speak the same language.</p>
         </div>
         
         <!-- Feature 3 -->
@@ -189,7 +215,7 @@
     <div class="max-w-7xl mx-auto px-6">
       <div class="text-center mb-16">
         <h2 class="text-3xl md:text-4xl font-bold mb-4 text-gray-900">Simple, Transparent <span class="gradient-text">Pricing</span></h2>
-        <p class="text-gray-600 text-lg max-w-2xl mx-auto">Start free, upgrade when you're ready. No hidden fees, no surprises.</p>
+        <p class="text-gray-600 text-lg max-w-2xl mx-auto">Start free, upgrade when you're ready. No hidden fees.</p>
       </div>
       
       <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
@@ -313,7 +339,7 @@
             How does AI improve RFI responses?
             <svg class="w-5 h-5 text-primary group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
           </summary>
-          <p class="mt-4 text-gray-600">Our AI analyzes RFI content and attached photos to provide engineers with technical context, and translates complex engineering responses into plain English for contractors. This reduces back-and-forth and speeds up resolution.</p>
+          <p class="mt-4 text-gray-600">Our AI analyzes RFI content and attached photos to provide engineers with technical context, and translates complex engineering responses into plain English for contractors.</p>
         </details>
         
         <details class="bg-white rounded-2xl p-6 shadow-sm group">
@@ -321,7 +347,7 @@
             Is my data secure?
             <svg class="w-5 h-5 text-primary group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
           </summary>
-          <p class="mt-4 text-gray-600">Absolutely. We use bank-grade encryption, secure cloud infrastructure (Supabase), and role-based access controls. Your project data is never shared with third parties.</p>
+          <p class="mt-4 text-gray-600">Absolutely. We use bank-grade encryption, secure cloud infrastructure, and role-based access controls. Your project data is never shared with third parties.</p>
         </details>
         
         <details class="bg-white rounded-2xl p-6 shadow-sm group">
@@ -329,15 +355,7 @@
             Can I try before I buy?
             <svg class="w-5 h-5 text-primary group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
           </summary>
-          <p class="mt-4 text-gray-600">Yes! Our Free plan lets you manage 1 project with 2 team members at no cost. Upgrade to Pro or Enterprise when you need more capacity.</p>
-        </details>
-        
-        <details class="bg-white rounded-2xl p-6 shadow-sm group">
-          <summary class="flex items-center justify-between cursor-pointer font-semibold text-gray-900">
-            What's the invoice fee?
-            <svg class="w-5 h-5 text-primary group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-          </summary>
-          <p class="mt-4 text-gray-600">Free plans have a 5% platform fee on invoices generated through SiteStream. Pro plans have no fees, and Enterprise has just 1%. This helps us keep the free tier available for everyone.</p>
+          <p class="mt-4 text-gray-600">Yes! Our Free plan lets you manage 1 project with 2 team members at no cost. Upgrade when you need more capacity.</p>
         </details>
       </div>
     </div>
@@ -347,7 +365,7 @@
   <section class="py-24 bg-white">
     <div class="max-w-4xl mx-auto px-6 text-center">
       <h2 class="text-3xl md:text-4xl font-bold mb-6 text-gray-900">Ready to Streamline Your Site?</h2>
-      <p class="text-xl text-gray-600 mb-8">Join hundreds of construction professionals who've cut their RFI response times in half.</p>
+      <p class="text-xl text-gray-600 mb-10">Join hundreds of construction professionals who've cut their RFI response times in half.</p>
       <div class="flex flex-col sm:flex-row gap-4 justify-center">
         <a href="https://apps.apple.com/app/sitestream" class="flex items-center justify-center gap-3 bg-gray-900 text-white px-8 py-4 rounded-full font-semibold hover:bg-gray-800 transition shadow-lg">
           <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
@@ -369,7 +387,7 @@
             <img src="images/logo.png" alt="SiteStream" class="h-8 w-8">
             <span class="text-lg font-bold text-gray-900">SiteStream</span>
           </div>
-          <p class="text-gray-500 text-sm">Construction site management made simple. Built in Australia, for Australian builders.</p>
+          <p class="text-gray-500 text-sm">Site to Office. Instantly.<br>Built in Australia.</p>
         </div>
         <div>
           <h4 class="font-semibold mb-4 text-gray-900">Product</h4>
@@ -396,7 +414,7 @@
         </div>
       </div>
       <div class="pt-8 border-t border-gray-200 text-center text-gray-400 text-sm">
-        <p>&copy; 2026 SiteStream. All rights reserved. ABN: XX XXX XXX XXX</p>
+        <p>&copy; 2026 SiteStream. All rights reserved.</p>
       </div>
     </div>
   </footer>
