@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Join the Waitlist - SiteStream</title>
+  <meta name="description" content="Be the first to know when SiteStream launches. Join our waitlist for early access.">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#14B8A6',
+            'primary-dark': '#0D9488',
+            'primary-light': '#5EEAD4',
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="icon" type="image/png" href="images/logo.png">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+    body { font-family: 'Inter', sans-serif; }
+    .gradient-text { background: linear-gradient(135deg, #14B8A6 0%, #0D9488 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    @keyframes shimmer {
+      0% { background-position: -200% 0; }
+      100% { background-position: 200% 0; }
+    }
+    .shimmer-text {
+      background: linear-gradient(90deg, #14B8A6 0%, #5EEAD4 50%, #14B8A6 100%);
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: shimmer 3s linear infinite;
+    }
+  </style>
+</head>
+<body class="bg-white text-gray-900 min-h-screen flex flex-col">
+  
+  <!-- Navigation -->
+  <nav class="w-full bg-white/80 backdrop-blur-lg border-b border-gray-100">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+      <a href="index.html" class="flex items-center gap-3">
+        <img src="images/logo.png" alt="SiteStream" class="h-10 w-10">
+        <span class="text-xl font-bold text-gray-900">SiteStream</span>
+      </a>
+      <a href="index.html" class="text-gray-600 hover:text-primary transition">← Back to Home</a>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="flex-1 flex items-center justify-center px-6 py-20">
+    <div class="max-w-lg w-full text-center">
+      
+      <!-- Icon -->
+      <div class="w-20 h-20 bg-primary/10 rounded-3xl flex items-center justify-center mx-auto mb-8">
+        <svg class="w-10 h-10 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/>
+        </svg>
+      </div>
+      
+      <!-- Heading -->
+      <h1 class="text-3xl md:text-4xl font-extrabold mb-4 text-gray-900">
+        Coming Soon
+      </h1>
+      <p class="text-xl text-gray-600 mb-2">
+        <span class="shimmer-text font-bold">SiteStream</span> is launching soon.
+      </p>
+      <p class="text-gray-500 mb-10">
+        Join the waitlist to be notified when we go live and get early access.
+      </p>
+      
+      <!-- Waitlist Form -->
+      <form id="waitlist-form" class="space-y-4">
+        <div class="flex flex-col sm:flex-row gap-3">
+          <input 
+            type="email" 
+            id="email" 
+            name="email" 
+            required
+            placeholder="Enter your email"
+            class="flex-1 px-5 py-4 border-2 border-gray-200 rounded-full text-gray-900 placeholder-gray-400 focus:outline-none focus:border-primary transition"
+          >
+          <button 
+            type="submit" 
+            id="submit-btn"
+            class="bg-primary hover:bg-primary-dark text-white px-8 py-4 rounded-full font-semibold transition shadow-lg whitespace-nowrap"
+          >
+            Join Waitlist
+          </button>
+        </div>
+        <p id="form-message" class="text-sm hidden"></p>
+      </form>
+      
+      <!-- Trust -->
+      <p class="mt-10 text-sm text-gray-400">
+        🔒 No spam, ever. We'll only email you when we launch.
+      </p>
+      
+      <!-- Stats -->
+      <div class="mt-12 pt-8 border-t border-gray-100">
+        <p class="text-sm text-gray-500 mb-4">Already waiting:</p>
+        <p class="text-3xl font-bold gradient-text" id="waitlist-count">—</p>
+        <p class="text-sm text-gray-400">construction professionals</p>
+      </div>
+      
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="py-6 border-t border-gray-100">
+    <div class="max-w-7xl mx-auto px-6 text-center text-gray-400 text-sm">
+      <p>&copy; 2026 SiteStream. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Supabase -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script>
+    // Initialize Supabase
+    const SUPABASE_URL = 'https://lnjvfwbxanpfbbyaztqr.supabase.co';
+    const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxuanZmd2J4YW5wZmJieWF6dHFyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzA0NTIwMTgsImV4cCI6MjA0NjAyODAxOH0.wCRxzLwpxLOctvpadWDaZdVBsvTZqvb_FMkrBMNkpMU';
+    
+    const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+    
+    // Get waitlist count
+    async function getWaitlistCount() {
+      const { count, error } = await supabase
+        .from('waitlist')
+        .select('*', { count: 'exact', head: true });
+      
+      if (!error && count !== null) {
+        document.getElementById('waitlist-count').textContent = count.toLocaleString();
+      }
+    }
+    
+    // Handle form submission
+    document.getElementById('waitlist-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      const email = document.getElementById('email').value;
+      const submitBtn = document.getElementById('submit-btn');
+      const formMessage = document.getElementById('form-message');
+      
+      // Disable button
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Joining...';
+      
+      try {
+        const { data, error } = await supabase
+          .from('waitlist')
+          .insert([{ email: email }]);
+        
+        if (error) {
+          if (error.code === '23505') {
+            // Duplicate email
+            formMessage.textContent = "You're already on the list! We'll notify you when we launch.";
+            formMessage.className = 'text-sm text-primary';
+          } else {
+            throw error;
+          }
+        } else {
+          formMessage.textContent = "🎉 You're on the list! We'll email you when we launch.";
+          formMessage.className = 'text-sm text-green-600';
+          document.getElementById('email').value = '';
+          getWaitlistCount(); // Refresh count
+        }
+      } catch (err) {
+        formMessage.textContent = 'Something went wrong. Please try again.';
+        formMessage.className = 'text-sm text-red-600';
+        console.error(err);
+      }
+      
+      formMessage.classList.remove('hidden');
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Join Waitlist';
+    });
+    
+    // Load count on page load
+    getWaitlistCount();
+  </script>
+
+</body>
+</html>
