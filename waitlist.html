@@ -152,6 +152,7 @@
       // Disable button
       submitBtn.disabled = true;
       submitBtn.textContent = 'Joining...';
+      formMessage.classList.add('hidden');
       
       try {
         const { data, error } = await supabase
@@ -160,40 +161,48 @@
         
         if (error) {
           if (error.code === '23505') {
-            // Duplicate email
+            // Duplicate email - show friendly message
             formMessage.textContent = "You're already on the list! We'll notify you when we launch.";
             formMessage.className = 'text-sm text-primary';
+            formMessage.classList.remove('hidden');
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Join Waitlist';
+            return;
           } else {
             throw error;
           }
-        } else {
-          // Send confirmation email
-          try {
-            await supabase.functions.invoke('send-email', {
-              body: {
-                type: 'waitlist_confirmation',
-                to: email,
-                data: {}
-              }
-            });
-          } catch (emailErr) {
-            console.error('Failed to send confirmation email:', emailErr);
-          }
-          
-          // Hide form and show success message
-          document.getElementById('waitlist-form').classList.add('hidden');
-          document.getElementById('success-message').classList.remove('hidden');
-          // Count is hardcoded - no refresh needed
         }
+        
+        // SUCCESS - Send confirmation email
+        try {
+          await supabase.functions.invoke('send-email', {
+            body: {
+              type: 'waitlist_confirmation',
+              to: email,
+              data: {}
+            }
+          });
+        } catch (emailErr) {
+          console.error('Failed to send confirmation email:', emailErr);
+        }
+        
+        // Hide form and show success message
+        document.getElementById('waitlist-form').classList.add('hidden');
+        document.getElementById('success-message').classList.remove('hidden');
+        
+        // Increment the displayed count
+        const countEl = document.getElementById('waitlist-count');
+        const currentCount = parseInt(countEl.textContent.replace(/[^0-9]/g, '')) || 1249;
+        countEl.textContent = (currentCount + 1).toLocaleString() + '+';
+        
       } catch (err) {
         formMessage.textContent = 'Something went wrong. Please try again.';
         formMessage.className = 'text-sm text-red-600';
+        formMessage.classList.remove('hidden');
         console.error(err);
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Join Waitlist';
       }
-      
-      formMessage.classList.remove('hidden');
-      submitBtn.disabled = false;
-      submitBtn.textContent = 'Join Waitlist';
     });
     
     // Count is hardcoded in HTML for reliability
