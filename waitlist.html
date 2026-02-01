@@ -95,6 +95,20 @@
         <p id="form-message" class="text-sm hidden"></p>
       </form>
       
+      <!-- Success Message (hidden by default) -->
+      <div id="success-message" class="hidden">
+        <div class="bg-primary/10 rounded-3xl p-8 text-center">
+          <div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-4">
+            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+            </svg>
+          </div>
+          <h3 class="text-2xl font-bold text-gray-900 mb-2">You're on the list! 🎉</h3>
+          <p class="text-gray-600 mb-4">Thanks for joining the SiteStream waitlist.</p>
+          <p class="text-gray-500 text-sm">Check your inbox for a confirmation email. We'll notify you as soon as we launch!</p>
+        </div>
+      </div>
+      
       <!-- Trust -->
       <p class="mt-10 text-sm text-gray-400">
         🔒 No spam, ever. We'll only email you when we launch.
@@ -176,9 +190,9 @@
             console.error('Failed to send confirmation email:', emailErr);
           }
           
-          formMessage.textContent = "🎉 You're on the list! Check your email for confirmation.";
-          formMessage.className = 'text-sm text-green-600';
-          document.getElementById('email').value = '';
+          // Hide form and show success message
+          document.getElementById('waitlist-form').classList.add('hidden');
+          document.getElementById('success-message').classList.remove('hidden');
           getWaitlistCount(); // Refresh count
         }
       } catch (err) {
