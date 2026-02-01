@@ -77,17 +77,20 @@
     </div>
   </nav>
 
-  <!-- Hero Section - Centered Layout -->
-  <section class="min-h-screen flex flex-col items-center justify-center pt-20 pb-12 px-6 bg-white">
-    
-    <!-- Phone Mockup - Centered with Animation -->
-    <div class="relative mb-12">
-      <!-- Phone Image - Clean, no background effects -->
-      <img src="images/hero-upright.png" alt="SiteStream App" class="w-80 md:w-96 lg:w-[28rem] hero-phone" onerror="this.src='https://placehold.co/400x800/FFFFFF/14B8A6?text=SiteStream'">
+  <!-- Hero Section - Full Screen Image -->
+  <section class="min-h-screen flex items-center justify-center pt-16 bg-white">
+    <div class="w-full max-w-6xl px-4">
+      <img src="images/hero-correct.png" alt="SiteStream App" class="w-full hero-phone" onerror="this.src='https://placehold.co/1200x600/FFFFFF/14B8A6?text=SiteStream'">
     </div>
-    
-    <!-- Text Content - Below Phone -->
-    <div class="text-center max-w-3xl">
+    <!-- Scroll indicator -->
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
+      <svg class="w-6 h-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/></svg>
+    </div>
+  </section>
+
+  <!-- Text Content Section - Below the fold -->
+  <section class="py-20 px-6 bg-white">
+    <div class="text-center max-w-3xl mx-auto">
       <div class="inline-flex items-center gap-2 bg-primary/10 rounded-full px-4 py-2 mb-6">
         <span class="w-2 h-2 bg-primary rounded-full animate-pulse"></span>
         <span class="text-primary text-sm font-medium">AI-Powered Construction Management</span>
