@@ -142,6 +142,8 @@
     const SUPABASE_URL = 'https://rmtwafrxuitowmuhhhgx.supabase.co';
     const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJtdHdhZnJ4dWl0b3dtdWhoaGd4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njc2MDcyODAsImV4cCI6MjA4MzE4MzI4MH0.Vdeu0bZYZqJoNROZaTGq0SjzGqweAhvq1cAd_ss1RSU';
     
+    const WAITLIST_OFFSET = 1247; // Base number to start from
+    
     let supabaseClient;
     try {
       supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
@@ -149,6 +151,27 @@
     } catch (initErr) {
       console.error('Failed to initialize Supabase:', initErr);
     }
+    
+    // Fetch and display real waitlist count
+    async function updateWaitlistCount() {
+      try {
+        const { data, error } = await supabaseClient
+          .from('waitlist')
+          .select('id');
+        
+        if (!error && data) {
+          const realCount = data.length + WAITLIST_OFFSET;
+          document.getElementById('waitlist-count').textContent = realCount.toLocaleString() + '+';
+          console.log('Waitlist count updated:', realCount);
+        }
+      } catch (err) {
+        console.error('Failed to fetch count:', err);
+        // Keep the default 1,249+ on error
+      }
+    }
+    
+    // Load count on page load
+    updateWaitlistCount();
     
     // Handle form submission
     const form = document.getElementById('waitlist-form');
@@ -208,10 +231,8 @@
           document.getElementById('waitlist-form').classList.add('hidden');
           document.getElementById('success-message').classList.remove('hidden');
           
-          // Increment the displayed count
-          const countEl = document.getElementById('waitlist-count');
-          const currentCount = parseInt(countEl.textContent.replace(/[^0-9]/g, '')) || 1249;
-          countEl.textContent = (currentCount + 1).toLocaleString() + '+';
+          // Update the count from database
+          updateWaitlistCount();
           
         } catch (err) {
           console.error('Form submission error:', err);
