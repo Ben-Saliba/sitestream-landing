@@ -5,6 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Join the Waitlist - SiteStream</title>
   <meta name="description" content="Be the first to know when SiteStream launches. Join our waitlist for early access.">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -132,80 +135,97 @@
   <!-- Supabase -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script>
+    // Version 2 - Fixed form submission
+    console.log('SiteStream Waitlist v2 loaded');
+    
     // Initialize Supabase
     const SUPABASE_URL = 'https://rmtwafrxuitowmuhhhgx.supabase.co';
     const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJtdHdhZnJ4dWl0b3dtdWhoaGd4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njc2MDcyODAsImV4cCI6MjA4MzE4MzI4MH0.Vdeu0bZYZqJoNROZaTGq0SjzGqweAhvq1cAd_ss1RSU';
     
-    const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-    
-    // Waitlist count is hardcoded for reliability (1247 base + ~2 real signups)
-    // Dynamic count can be added later if needed
+    let supabaseClient;
+    try {
+      supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+      console.log('Supabase client initialized');
+    } catch (initErr) {
+      console.error('Failed to initialize Supabase:', initErr);
+    }
     
     // Handle form submission
-    document.getElementById('waitlist-form').addEventListener('submit', async (e) => {
-      e.preventDefault();
-      
-      const email = document.getElementById('email').value;
-      const submitBtn = document.getElementById('submit-btn');
-      const formMessage = document.getElementById('form-message');
-      
-      // Disable button
-      submitBtn.disabled = true;
-      submitBtn.textContent = 'Joining...';
-      formMessage.classList.add('hidden');
-      
-      try {
-        const { data, error } = await supabase
-          .from('waitlist')
-          .insert([{ email: email }]);
+    const form = document.getElementById('waitlist-form');
+    if (form) {
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        console.log('Form submitted');
         
-        if (error) {
-          if (error.code === '23505') {
-            // Duplicate email - show friendly message
-            formMessage.textContent = "You're already on the list! We'll notify you when we launch.";
-            formMessage.className = 'text-sm text-primary';
-            formMessage.classList.remove('hidden');
-            submitBtn.disabled = false;
-            submitBtn.textContent = 'Join Waitlist';
-            return;
-          } else {
-            throw error;
-          }
-        }
+        const email = document.getElementById('email').value;
+        const submitBtn = document.getElementById('submit-btn');
+        const formMessage = document.getElementById('form-message');
         
-        // SUCCESS - Send confirmation email
+        // Disable button
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Joining...';
+        formMessage.classList.add('hidden');
+        
         try {
-          await supabase.functions.invoke('send-email', {
-            body: {
-              type: 'waitlist_confirmation',
-              to: email,
-              data: {}
+          console.log('Inserting email:', email);
+          const { data, error } = await supabaseClient
+            .from('waitlist')
+            .insert([{ email: email }]);
+          
+          console.log('Insert result:', { data, error });
+          
+          if (error) {
+            if (error.code === '23505') {
+              // Duplicate email - show friendly message
+              formMessage.textContent = "You're already on the list! We'll notify you when we launch.";
+              formMessage.className = 'text-sm text-primary';
+              formMessage.classList.remove('hidden');
+              submitBtn.disabled = false;
+              submitBtn.textContent = 'Join Waitlist';
+              return;
+            } else {
+              throw error;
             }
-          });
-        } catch (emailErr) {
-          console.error('Failed to send confirmation email:', emailErr);
+          }
+          
+          // SUCCESS - Send confirmation email
+          console.log('Sending confirmation email...');
+          try {
+            await supabaseClient.functions.invoke('send-email', {
+              body: {
+                type: 'waitlist_confirmation',
+                to: email,
+                data: {}
+              }
+            });
+            console.log('Email sent successfully');
+          } catch (emailErr) {
+            console.error('Failed to send confirmation email:', emailErr);
+          }
+          
+          // Hide form and show success message
+          console.log('Showing success message');
+          document.getElementById('waitlist-form').classList.add('hidden');
+          document.getElementById('success-message').classList.remove('hidden');
+          
+          // Increment the displayed count
+          const countEl = document.getElementById('waitlist-count');
+          const currentCount = parseInt(countEl.textContent.replace(/[^0-9]/g, '')) || 1249;
+          countEl.textContent = (currentCount + 1).toLocaleString() + '+';
+          
+        } catch (err) {
+          console.error('Form submission error:', err);
+          formMessage.textContent = 'Something went wrong. Please try again.';
+          formMessage.className = 'text-sm text-red-600';
+          formMessage.classList.remove('hidden');
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Join Waitlist';
         }
-        
-        // Hide form and show success message
-        document.getElementById('waitlist-form').classList.add('hidden');
-        document.getElementById('success-message').classList.remove('hidden');
-        
-        // Increment the displayed count
-        const countEl = document.getElementById('waitlist-count');
-        const currentCount = parseInt(countEl.textContent.replace(/[^0-9]/g, '')) || 1249;
-        countEl.textContent = (currentCount + 1).toLocaleString() + '+';
-        
-      } catch (err) {
-        formMessage.textContent = 'Something went wrong. Please try again.';
-        formMessage.className = 'text-sm text-red-600';
-        formMessage.classList.remove('hidden');
-        console.error(err);
-        submitBtn.disabled = false;
-        submitBtn.textContent = 'Join Waitlist';
-      }
-    });
-    
-    // Count is hardcoded in HTML for reliability
+      });
+      console.log('Form listener attached');
+    } else {
+      console.error('Form not found!');
+    }
   </script>
 
 </body>
