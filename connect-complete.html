@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stripe Connected - SiteStream</title>
+  <meta name="description" content="Your Stripe account has been connected to SiteStream.">
+  <meta name="robots" content="noindex, nofollow">
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#14B8A6',
+            'primary-dark': '#0D9488',
+            'primary-light': '#5EEAD4',
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="icon" type="image/png" href="images/logo.png">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+    body { font-family: 'Inter', sans-serif; }
+  </style>
+</head>
+<body class="bg-white text-gray-900 min-h-screen flex flex-col">
+  
+  <!-- Navigation -->
+  <nav class="fixed w-full z-50 bg-white/80 backdrop-blur-lg border-b border-gray-100">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+      <a href="index.html" class="flex items-center gap-3">
+        <img src="images/logo.png" alt="SiteStream" class="h-10 w-10">
+        <span class="text-xl font-bold text-gray-900">SiteStream</span>
+      </a>
+    </div>
+  </nav>
+
+  <!-- Content -->
+  <main class="flex-1 flex items-center justify-center pt-20 px-6">
+    <div class="text-center max-w-md">
+      <!-- Checkmark Icon -->
+      <div class="mx-auto w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center mb-6">
+        <svg class="w-10 h-10 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path>
+        </svg>
+      </div>
+      
+      <h1 class="text-3xl font-bold text-gray-900 mb-4">Stripe Connected!</h1>
+      <p class="text-gray-600 text-lg mb-8">
+        Your account is set up to receive payments. You can now send invoices with online payment links.
+      </p>
+      <a href="https://sitestream.au" class="inline-block bg-primary hover:bg-primary-dark text-white px-6 py-3 rounded-full font-semibold transition">
+        Return to SiteStream
+      </a>
+    </div>
+  </main>
+</body>
+</html>
