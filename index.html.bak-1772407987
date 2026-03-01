@@ -96,7 +96,7 @@
       </div>
       <div class="flex items-center gap-4">
         <a href="#pricing" class="hidden sm:block text-gray-600 hover:text-gray-900 transition">Pricing</a>
-        <a href="/waitlist" class="bg-primary hover:bg-primary-dark text-white px-5 py-2 rounded-full font-semibold transition">Join Waitlist</a>
+        <a href="https://apps.apple.com/app/sitestream/id6757634679" class="bg-primary hover:bg-primary-dark text-white px-5 py-2 rounded-full font-semibold transition">Download Free</a>
       </div>
     </div>
   </nav>
@@ -125,9 +125,9 @@
           <p class="text-sm text-gray-500 mb-6">Built for Australian construction sites. Available now on the App Store.</p>
           
           <div class="flex flex-col sm:flex-row gap-4">
-            <a href="/waitlist" aria-label="Join the SiteStream Waitlist" class="flex items-center justify-center gap-3 bg-primary hover:bg-primary-dark text-white px-8 py-4 rounded-full font-semibold transition shadow-lg shadow-primary/25">
+            <a href="https://apps.apple.com/app/sitestream/id6757634679" aria-label="Download SiteStream on the App Store" class="flex items-center justify-center gap-3 bg-primary hover:bg-primary-dark text-white px-8 py-4 rounded-full font-semibold transition shadow-lg shadow-primary/25">
               <svg class="w-5 h-5" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/></svg>
-              Join the Waitlist
+              Download on App Store
             </a>
             <a href="#features" aria-label="See SiteStream features" class="flex items-center justify-center gap-2 border-2 border-gray-200 text-gray-700 px-8 py-4 rounded-full font-semibold hover:border-primary hover:text-primary transition">
               See Features
@@ -288,7 +288,7 @@
               5% Invoice Fee
             </li>
           </ul>
-          <a href="/waitlist" class="block text-center border-2 border-gray-200 text-gray-700 py-3 rounded-full font-semibold hover:border-primary hover:text-primary transition">Join Waitlist</a>
+          <a href="https://apps.apple.com/app/sitestream/id6757634679" class="block text-center border-2 border-gray-200 text-gray-700 py-3 rounded-full font-semibold hover:border-primary hover:text-primary transition">Download Free</a>
         </div>
         
         <!-- Pro Plan -->
@@ -322,7 +322,7 @@
               Priority Support
             </li>
           </ul>
-          <a href="/waitlist" class="block text-center bg-white text-primary py-3 rounded-full font-semibold hover:bg-gray-100 transition">Join the Waitlist</a>
+          <a href="https://apps.apple.com/app/sitestream/id6757634679" class="block text-center bg-white text-primary py-3 rounded-full font-semibold hover:bg-gray-100 transition">Download on App Store</a>
         </div>
         
         <!-- Enterprise Plan -->
@@ -408,11 +408,11 @@
   <section class="py-24 bg-white">
     <div class="max-w-4xl mx-auto px-6 text-center">
       <h2 class="text-3xl md:text-4xl font-bold mb-6 text-gray-900">Ready to Streamline Your Site?</h2>
-      <p class="text-xl text-gray-600 mb-10">Join the waitlist for early access to AI-powered RFI management.</p>
+      <p class="text-xl text-gray-600 mb-10">Download SiteStream free and streamline your RFI management today.</p>
       <div class="flex flex-col sm:flex-row gap-4 justify-center">
-        <a href="/waitlist" class="flex items-center justify-center gap-3 bg-primary hover:bg-primary-dark text-white px-8 py-4 rounded-full font-semibold transition shadow-lg shadow-primary/25">
+        <a href="https://apps.apple.com/app/sitestream/id6757634679" class="flex items-center justify-center gap-3 bg-primary hover:bg-primary-dark text-white px-8 py-4 rounded-full font-semibold transition shadow-lg shadow-primary/25">
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/></svg>
-          Join the Waitlist
+          Download on App Store
         </a>
         <a href="#pricing" class="border-2 border-gray-200 text-gray-700 px-8 py-4 rounded-full font-semibold hover:border-primary hover:text-primary transition">
           View Pricing
