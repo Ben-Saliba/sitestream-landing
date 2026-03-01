@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SiteStream - AI-Powered Construction RFI Management</title>
+  <meta name="description" content="Streamline your construction site communication. Track RFIs, manage projects, and invoice seamlessly with AI-powered insights. Built for Australian engineers, contractors and subbies.">
+  
+  <!-- Canonical -->
+  <link rel="canonical" href="https://www.sitestream.au/">
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.sitestream.au/">
+  <meta property="og:title" content="SiteStream - AI-Powered Construction RFI Management">
+  <meta property="og:description" content="Stop chasing paperwork. SiteStream connects contractors and engineers in real-time, with AI insights that cut RFI response times in half.">
+  <meta property="og:image" content="https://www.sitestream.au/images/hero-correct.png">
+  <meta property="og:image:width" content="2976">
+  <meta property="og:image:height" content="1440">
+  <meta property="og:site_name" content="SiteStream">
+  <meta property="og:locale" content="en_AU">
+  
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="SiteStream - AI-Powered Construction RFI Management">
+  <meta name="twitter:description" content="Stop chasing paperwork. SiteStream connects contractors and engineers in real-time, with AI insights that cut RFI response times in half.">
+  <meta name="twitter:image" content="https://www.sitestream.au/images/hero-correct.png">
+  
+  <!-- Additional SEO Meta -->
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="SiteStream">
+  <meta name="geo.region" content="AU-VIC">
+  <meta name="geo.placename" content="Melbourne">
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="images/logo-80.png">
+  <style>
+    :root { --color-primary: #14B8A6; --color-primary-dark: #0D9488; --color-primary-light: #5EEAD4; }
+    .bg-primary { background-color: var(--color-primary); } .bg-primary-dark, .hover\:bg-primary-dark:hover { background-color: var(--color-primary-dark); }
+    .text-primary { color: var(--color-primary); } .hover\:text-primary:hover { color: var(--color-primary); }
+    .text-primary-light { color: var(--color-primary-light); }
+    .bg-primary\/10 { background-color: rgba(20, 184, 166, 0.1); } .bg-primary\/5 { background-color: rgba(20, 184, 166, 0.05); }
+    .shadow-primary\/25 { --tw-shadow-color: rgba(20, 184, 166, 0.25); } .shadow-primary\/20 { --tw-shadow-color: rgba(20, 184, 166, 0.2); }
+    .border-primary, .hover\:border-primary:hover { border-color: var(--color-primary); }
+    .from-primary\/10 { --tw-gradient-from: rgba(20, 184, 166, 0.1); } .to-primary\/5 { --tw-gradient-to: rgba(20, 184, 166, 0.05); }
+    body { font-family: 'Inter', sans-serif; }
+    .gradient-text { background: linear-gradient(135deg, #14B8A6 0%, #0D9488 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .card-hover { transition: transform 0.3s, box-shadow 0.3s; }
+    .card-hover:hover { transform: translateY(-4px); box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08); }
+    
+    /* Hero Animation */
+    @keyframes float {
+      0%, 100% { transform: translateY(0px) rotate(-2deg); }
+      50% { transform: translateY(-20px) rotate(-2deg); }
+    }
+    @keyframes glow-pulse {
+      0%, 100% { opacity: 0.4; transform: scale(1); }
+      50% { opacity: 0.6; transform: scale(1.05); }
+    }
+    @keyframes shimmer {
+      0% { background-position: -200% 0; }
+      100% { background-position: 200% 0; }
+    }
+    .hero-phone {
+      animation: float 6s ease-in-out infinite;
+    }
+    .hero-glow {
+      animation: glow-pulse 4s ease-in-out infinite;
+    }
+    .shimmer-text {
+      background: linear-gradient(90deg, #14B8A6 0%, #5EEAD4 50%, #14B8A6 100%);
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: shimmer 3s linear infinite;
+    }
+  </style>
+</head>
+<body class="bg-white text-gray-900">
+  
+  <!-- Navigation -->
+  <nav aria-label="Main navigation" class="fixed w-full z-50 bg-white/80 backdrop-blur-lg border-b border-gray-100">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <img src="images/logo-80.png" alt="SiteStream" class="h-10 w-10" width="40" height="40">
+        <span class="text-xl font-bold text-gray-900">SiteStream</span>
+      </div>
+      <div class="hidden md:flex items-center gap-8">
+        <a href="#features" class="text-gray-600 hover:text-primary transition">Features</a>
+        <a href="#pricing" class="text-gray-600 hover:text-primary transition">Pricing</a>
+        <a href="#faq" class="text-gray-600 hover:text-primary transition">FAQ</a>
+      </div>
+      <div class="flex items-center gap-4">
+        <a href="#pricing" class="hidden sm:block text-gray-600 hover:text-gray-900 transition">Pricing</a>
+        <a href="waitlist.html" class="bg-primary hover:bg-primary-dark text-white px-5 py-2 rounded-full font-semibold transition">Get Early Access</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section - Headline + Image side by side -->
+  <main role="main">
+  <section class="min-h-screen flex items-center pt-20 pb-16 bg-white">
+    <div class="max-w-7xl mx-auto px-6 w-full">
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <!-- Left: Copy -->
+        <div>
+          <div class="inline-flex items-center gap-2 bg-primary/10 rounded-full px-4 py-2 mb-6">
+            <span class="w-2 h-2 bg-primary rounded-full animate-pulse"></span>
+            <span class="text-primary text-sm font-medium">Built for engineers, contractors &amp; subbies</span>
+          </div>
+          
+          <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight mb-6 text-gray-900">
+            RFIs Answered.<br>
+            <span class="shimmer-text">Projects Streamlined.</span>
+          </h1>
+          
+          <p class="text-xl text-gray-600 mb-8 max-w-xl">
+            Stop chasing paperwork. SiteStream connects contractors and engineers in real-time, with AI insights that cut response times in half.
+          </p>
+
+          <p class="text-sm text-gray-500 mb-6">Built for Australian construction sites. Launching Q1 2026.</p>
+          
+          <div class="flex flex-col sm:flex-row gap-4">
+            <a href="waitlist.html" aria-label="Get early access to SiteStream" class="flex items-center justify-center gap-3 bg-primary hover:bg-primary-dark text-white px-8 py-4 rounded-full font-semibold transition shadow-lg shadow-primary/25">
+              <svg class="w-5 h-5" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/></svg>
+              Get Early Access
+            </a>
+            <a href="#features" aria-label="See SiteStream features" class="flex items-center justify-center gap-2 border-2 border-gray-200 text-gray-700 px-8 py-4 rounded-full font-semibold hover:border-primary hover:text-primary transition">
+              See Features
+              <svg class="w-5 h-5" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+            </a>
+          </div>
+          
+          <p class="mt-8 text-sm text-gray-500">Join 1,200+ construction professionals on the waitlist</p>
+        </div>
+
+        <!-- Right: Hero Image -->
+        <div class="relative">
+          <div class="absolute inset-0 bg-gradient-to-br from-primary/10 to-primary/5 rounded-3xl -rotate-2 hero-glow"></div>
+          <picture>
+            <img src="images/hero-1920.jpg"
+                 srcset="images/hero-640.jpg 640w, images/hero-1024.jpg 1024w, images/hero-1920.jpg 1920w"
+                 sizes="(max-width: 768px) 100vw, 50vw"
+                 alt="SiteStream mobile app showing RFI tracking dashboard for construction projects"
+                 width="2976" height="1440"
+                 fetchpriority="high"
+                 class="relative w-full hero-phone rounded-2xl">
+          </picture>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section id="features" class="py-24 bg-white">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl md:text-4xl font-bold mb-4 text-gray-900">Everything You Need to <span class="gradient-text">Move Faster</span></h2>
+        <p class="text-gray-600 text-lg max-w-2xl mx-auto">Built by engineers, for the construction industry. Every feature designed to eliminate delays.</p>
+      </div>
+      
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Feature 1: Voice to RFI -->
+        <div class="bg-gray-50 p-8 rounded-3xl card-hover">
+          <div class="w-14 h-14 bg-primary/10 rounded-2xl flex items-center justify-center mb-6">
+            <svg class="w-7 h-7 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"/></svg>
+          </div>
+          <h3 class="text-xl font-bold mb-3 text-gray-900">Voice-to-RFI</h3>
+          <p class="text-gray-600">Talk into your phone on site — AI converts your voice into a structured, professional RFI. No typing, no paperwork, just speak.</p>
+        </div>
+        
+        <!-- Feature 2: AI Photo Analysis -->
+        <div class="bg-gray-50 p-8 rounded-3xl card-hover">
+          <div class="w-14 h-14 bg-primary/10 rounded-2xl flex items-center justify-center mb-6">
+            <svg class="w-7 h-7 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+          </div>
+          <h3 class="text-xl font-bold mb-3 text-gray-900">Smart Photo Analysis</h3>
+          <p class="text-gray-600">Snap a photo on site and AI describes the issue for you. Attach it to an RFI with auto-generated context — engineers get the full picture instantly.</p>
+        </div>
+        
+        <!-- Feature 3: AI Translation -->
+        <div class="bg-gray-50 p-8 rounded-3xl card-hover">
+          <div class="w-14 h-14 bg-primary/10 rounded-2xl flex items-center justify-center mb-6">
+            <svg class="w-7 h-7 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
+          </div>
+          <h3 class="text-xl font-bold mb-3 text-gray-900">Plain-English Translations</h3>
+          <p class="text-gray-600">AI translates complex engineering responses into language contractors actually understand. No more back-and-forth over jargon.</p>
+        </div>
+        
+        <!-- Feature 4: RFI Tracking -->
+        <div class="bg-gray-50 p-8 rounded-3xl card-hover">
+          <div class="w-14 h-14 bg-primary/10 rounded-2xl flex items-center justify-center mb-6">
+            <svg class="w-7 h-7 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          </div>
+          <h3 class="text-xl font-bold mb-3 text-gray-900">Real-Time RFI Tracking</h3>
+          <p class="text-gray-600">Create, assign, and track every RFI in one place. Status updates, notifications, and full audit trails — nothing falls through the cracks.</p>
+        </div>
+        
+        <!-- Feature 5: Team Collaboration -->
+        <div class="bg-gray-50 p-8 rounded-3xl card-hover">
+          <div class="w-14 h-14 bg-primary/10 rounded-2xl flex items-center justify-center mb-6">
+            <svg class="w-7 h-7 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+          </div>
+          <h3 class="text-xl font-bold mb-3 text-gray-900">Team Collaboration</h3>
+          <p class="text-gray-600">Invite contractors, engineers, and subbies to your project. Everyone sees the same info in real-time — no one's left chasing emails.</p>
+        </div>
+        
+        <!-- Feature 6: Built-In Invoicing -->
+        <div class="bg-gray-50 p-8 rounded-3xl card-hover">
+          <div class="w-14 h-14 bg-primary/10 rounded-2xl flex items-center justify-center mb-6">
+            <svg class="w-7 h-7 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+          </div>
+          <h3 class="text-xl font-bold mb-3 text-gray-900">Built-In Invoicing</h3>
+          <p class="text-gray-600">Generate professional PDF invoices with your branding. Track payments and manage billing without leaving the app.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Social Proof -->
+  <section class="py-16 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+        <div>
+          <p class="text-4xl font-bold gradient-text">2x</p>
+          <p class="text-gray-600 mt-2">Faster RFI Turnaround</p>
+        </div>
+        <div>
+          <p class="text-4xl font-bold gradient-text">1,200+</p>
+          <p class="text-gray-600 mt-2">On Waitlist</p>
+        </div>
+        <div>
+          <p class="text-4xl font-bold gradient-text">Q1</p>
+          <p class="text-gray-600 mt-2">2026 Launch</p>
+        </div>
+        <div>
+          <p class="text-4xl font-bold gradient-text">iOS</p>
+          <p class="text-gray-600 mt-2">iPhone &amp; iPad</p>
+        </div>
+      </div>
+      
+      <!-- Testimonial / Beta Quote -->
+      <div class="mt-12 max-w-2xl mx-auto">
+        <blockquote class="bg-white rounded-2xl p-8 shadow-sm border border-gray-100 text-center">
+          <p class="text-gray-700 text-lg italic mb-4">"Finally, an RFI app that doesn't feel like it was built in 2005. This is how site-to-office communication should work."</p>
+          <footer class="text-gray-500 text-sm font-medium">— Beta Tester, Melbourne Construction</footer>
+        </blockquote>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing Section -->
+  <section id="pricing" class="py-24 bg-white">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl md:text-4xl font-bold mb-4 text-gray-900">Simple, Transparent <span class="gradient-text">Pricing</span></h2>
+        <p class="text-gray-600 text-lg max-w-2xl mx-auto">Start free, upgrade when you're ready. No hidden fees.</p>
+      </div>
+      
+      <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+        <!-- Free Plan -->
+        <div class="bg-gray-50 p-8 rounded-3xl">
+          <h3 class="text-xl font-bold mb-2 text-gray-900">Free</h3>
+          <p class="text-gray-500 mb-6">Perfect for getting started</p>
+          <div class="mb-6">
+            <span class="text-4xl font-bold text-gray-900">$0</span>
+            <span class="text-gray-500">/month</span>
+          </div>
+          <ul class="space-y-3 mb-8">
+            <li class="flex items-center gap-3 text-gray-600">
+              <svg class="w-5 h-5 text-primary flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+              1 Project
+            </li>
+            <li class="flex items-center gap-3 text-gray-600">
+              <svg class="w-5 h-5 text-primary flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+              2 Team Members
+            </li>
+            <li class="flex items-center gap-3 text-gray-600">
+              <svg class="w-5 h-5 text-primary flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+              Basic AI Insights
+            </li>
+            <li class="flex items-center gap-3 text-gray-600">
+              <svg class="w-5 h-5 text-primary flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+              5% Invoice Fee
+            </li>
+          </ul>
+          <a href="waitlist.html" class="block text-center border-2 border-gray-200 text-gray-700 py-3 rounded-full font-semibold hover:border-primary hover:text-primary transition">Join Waitlist — Free</a>
+        </div>
+        
+        <!-- Pro Plan -->
+        <div class="bg-primary p-8 rounded-3xl relative shadow-xl shadow-primary/20 scale-105">
+          <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-gray-900 text-white px-4 py-1 rounded-full text-sm font-semibold">Most Popular</div>
+          <h3 class="text-xl font-bold mb-2 text-white">Pro</h3>
+          <p class="text-primary-light mb-6">For growing teams</p>
+          <div class="mb-6">
+            <span class="text-4xl font-bold text-white">$29</span>
+            <span class="text-primary-light">/month</span>
+          </div>
+          <ul class="space-y-3 mb-8">
+            <li class="flex items-center gap-3 text-white">
+              <svg class="w-5 h-5 text-white flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+              10 Projects
+            </li>
+            <li class="flex items-center gap-3 text-white">
+              <svg class="w-5 h-5 text-white flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+              10 Team Members
+            </li>
+            <li class="flex items-center gap-3 text-white">
+              <svg class="w-5 h-5 text-white flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+              Advanced AI Insights
+            </li>
+            <li class="flex items-center gap-3 text-white font-semibold">
+              <svg class="w-5 h-5 text-white flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+              2% Invoice Fee
+            </li>
+            <li class="flex items-center gap-3 text-white">
+              <svg class="w-5 h-5 text-white flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+              Priority Support
+            </li>
+          </ul>
+          <a href="waitlist.html" class="block text-center bg-white text-primary py-3 rounded-full font-semibold hover:bg-gray-100 transition">Get Early Access</a>
+        </div>
+        
+        <!-- Enterprise Plan -->
+        <div class="bg-gray-50 p-8 rounded-3xl">
+          <h3 class="text-xl font-bold mb-2 text-gray-900">Enterprise</h3>
+          <p class="text-gray-500 mb-6">For large organizations</p>
+          <div class="mb-6">
+            <span class="text-4xl font-bold text-gray-900">$79</span>
+            <span class="text-gray-500">/month</span>
+          </div>
+          <ul class="space-y-3 mb-8">
+            <li class="flex items-center gap-3 text-gray-600">
+              <svg class="w-5 h-5 text-primary flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+              Unlimited Projects
+            </li>
+            <li class="flex items-center gap-3 text-gray-600">
+              <svg class="w-5 h-5 text-primary flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+              Unlimited Team Members
+            </li>
+            <li class="flex items-center gap-3 text-gray-600">
+              <svg class="w-5 h-5 text-primary flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+              Full AI Suite
+            </li>
+            <li class="flex items-center gap-3 text-gray-600">
+              <svg class="w-5 h-5 text-primary flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+              0.5% Invoice Fee
+            </li>
+            <li class="flex items-center gap-3 text-gray-600">
+              <svg class="w-5 h-5 text-primary flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+              Dedicated Support
+            </li>
+          </ul>
+          <a href="mailto:support@sitestream.au" class="block text-center border-2 border-gray-200 text-gray-700 py-3 rounded-full font-semibold hover:border-primary hover:text-primary transition">Contact Sales</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section id="faq" class="py-24 bg-gray-50">
+    <div class="max-w-3xl mx-auto px-6">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl md:text-4xl font-bold mb-4 text-gray-900">Frequently Asked <span class="gradient-text">Questions</span></h2>
+      </div>
+      
+      <div class="space-y-4">
+        <details class="bg-white rounded-2xl p-6 shadow-sm group">
+          <summary class="flex items-center justify-between cursor-pointer font-semibold text-gray-900">
+            What is an RFI?
+            <svg class="w-5 h-5 text-primary group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </summary>
+          <p class="mt-4 text-gray-600">A Request for Information (RFI) is a formal question from a contractor to an engineer or architect seeking clarification on drawings, specifications, or other project documentation. SiteStream digitizes this process.</p>
+        </details>
+        
+        <details class="bg-white rounded-2xl p-6 shadow-sm group">
+          <summary class="flex items-center justify-between cursor-pointer font-semibold text-gray-900">
+            How does AI improve RFI responses?
+            <svg class="w-5 h-5 text-primary group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </summary>
+          <p class="mt-4 text-gray-600">SiteStream uses AI in three ways: Voice-to-RFI lets you speak an RFI on site and AI converts it into a structured request. Smart Photo Analysis auto-describes site issues from photos you attach. And Plain-English Translation converts complex engineering jargon so contractors and engineers actually understand each other.</p>
+        </details>
+        
+        <details class="bg-white rounded-2xl p-6 shadow-sm group">
+          <summary class="flex items-center justify-between cursor-pointer font-semibold text-gray-900">
+            Is my data secure?
+            <svg class="w-5 h-5 text-primary group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </summary>
+          <p class="mt-4 text-gray-600">Absolutely. We use bank-grade encryption, secure cloud infrastructure, and role-based access controls. Your project data is never shared with third parties.</p>
+        </details>
+        
+        <details class="bg-white rounded-2xl p-6 shadow-sm group">
+          <summary class="flex items-center justify-between cursor-pointer font-semibold text-gray-900">
+            Can I try before I buy?
+            <svg class="w-5 h-5 text-primary group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </summary>
+          <p class="mt-4 text-gray-600">Yes! Our Free plan lets you manage 1 project with 2 team members at no cost. Upgrade when you need more capacity.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="py-24 bg-white">
+    <div class="max-w-4xl mx-auto px-6 text-center">
+      <h2 class="text-3xl md:text-4xl font-bold mb-6 text-gray-900">Ready to Streamline Your Site?</h2>
+      <p class="text-xl text-gray-600 mb-10">Join 1,200+ construction professionals getting early access to smarter RFI management.</p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="waitlist.html" class="flex items-center justify-center gap-3 bg-primary hover:bg-primary-dark text-white px-8 py-4 rounded-full font-semibold transition shadow-lg shadow-primary/25">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/></svg>
+          Get Early Access
+        </a>
+        <a href="#pricing" class="border-2 border-gray-200 text-gray-700 px-8 py-4 rounded-full font-semibold hover:border-primary hover:text-primary transition">
+          View Pricing
+        </a>
+      </div>
+      <p class="mt-6 text-sm text-gray-400">Free to start. No credit card required.</p>
+    </div>
+  </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-gray-50 py-12 border-t border-gray-100">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="grid md:grid-cols-4 gap-8 mb-8">
+        <div>
+          <div class="flex items-center gap-3 mb-4">
+            <img src="images/logo-80.png" alt="SiteStream" class="h-8 w-8" width="32" height="32" loading="lazy">
+            <span class="text-lg font-bold text-gray-900">SiteStream</span>
+          </div>
+          <p class="text-gray-500 text-sm">Site to Office. Instantly.<br>Built in Australia.</p>
+        </div>
+        <div>
+          <h4 class="font-semibold mb-4 text-gray-900">Product</h4>
+          <ul class="space-y-2 text-gray-500 text-sm">
+            <li><a href="#features" class="hover:text-primary transition">Features</a></li>
+            <li><a href="#pricing" class="hover:text-primary transition">Pricing</a></li>
+            <li><a href="#faq" class="hover:text-primary transition">FAQ</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-semibold mb-4 text-gray-900">Company</h4>
+          <ul class="space-y-2 text-gray-500 text-sm">
+            <li><a href="mailto:support@sitestream.au" class="hover:text-primary transition">Contact</a></li>
+            <li><a href="terms.html" class="hover:text-primary transition">Terms of Service</a></li>
+            <li><a href="privacy.html" class="hover:text-primary transition">Privacy Policy</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="pt-8 border-t border-gray-200 text-center text-gray-400 text-sm">
+        <p>&copy; 2026 SiteStream. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Structured Data: Organization -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "SiteStream",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "iOS",
+    "description": "AI-powered construction RFI management app. Track RFIs, manage projects, and invoice seamlessly. Built for Australian engineers, contractors and subbies.",
+    "url": "https://www.sitestream.au",
+    "image": "https://www.sitestream.au/images/logo.png",
+    "author": {
+      "@type": "Organization",
+      "name": "SiteStream",
+      "url": "https://www.sitestream.au"
+    },
+    "offers": [
+      {
+        "@type": "Offer",
+        "name": "Free",
+        "price": "0",
+        "priceCurrency": "AUD",
+        "description": "1 Project, 2 Team Members, Basic AI Insights"
+      },
+      {
+        "@type": "Offer",
+        "name": "Pro",
+        "price": "29",
+        "priceCurrency": "AUD",
+        "description": "10 Projects, 10 Team Members, Advanced AI Insights, 2% Invoice Fee"
+      },
+      {
+        "@type": "Offer",
+        "name": "Enterprise",
+        "price": "79",
+        "priceCurrency": "AUD",
+        "description": "Unlimited Projects, Unlimited Team Members, Full AI Suite"
+      }
+    ]
+  }
+  </script>
+
+  <!-- Structured Data: FAQ -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is an RFI in construction?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A Request for Information (RFI) is a formal question from a contractor to an engineer or architect seeking clarification on drawings, specifications, or other project documentation. SiteStream digitizes this process, making it faster and more transparent."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How does AI improve RFI responses?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "SiteStream uses AI in three ways: Voice-to-RFI lets you speak an RFI on site and AI converts it into a structured request. Smart Photo Analysis auto-describes site issues from photos you attach. And Plain-English Translation converts complex engineering jargon so contractors and engineers actually understand each other."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is my construction project data secure?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Absolutely. SiteStream uses bank-grade encryption, secure cloud infrastructure, and role-based access controls. Your project data is never shared with third parties."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I try SiteStream before I buy?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes! The Free plan lets you manage 1 project with 2 team members at no cost. Upgrade when you need more capacity."
+        }
+      }
+    ]
+  }
+  </script>
+
+</body>
+</html>
