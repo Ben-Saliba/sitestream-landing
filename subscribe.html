@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Subscribe - SiteStream</title>
+  <meta name="description" content="Choose your SiteStream plan. Professional and Enterprise subscriptions for construction teams.">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="images/logo-80.png">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    :root { --color-primary: #14B8A6; --color-primary-dark: #0D9488; }
+    body { font-family: 'Inter', sans-serif; }
+    .gradient-text { background: linear-gradient(135deg, #14B8A6 0%, #0D9488 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .card-highlight { border: 2px solid var(--color-primary); position: relative; }
+    .card-highlight::before {
+      content: 'MOST POPULAR';
+      position: absolute; top: -14px; left: 50%; transform: translateX(-50%);
+      background: linear-gradient(135deg, #14B8A6, #0D9488); color: white;
+      padding: 4px 16px; border-radius: 20px; font-size: 12px; font-weight: 700; letter-spacing: 0.5px;
+    }
+  </style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+  <!-- Header -->
+  <header class="bg-white border-b border-gray-100">
+    <div class="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
+      <a href="/" class="flex items-center gap-2">
+        <img src="images/logo-80.png" alt="SiteStream" class="h-8 w-8">
+        <span class="text-xl font-bold text-gray-900">SiteStream</span>
+      </a>
+      <a href="/" class="text-gray-500 hover:text-gray-700 text-sm">← Back to home</a>
+    </div>
+  </header>
+
+  <main class="max-w-5xl mx-auto px-4 py-16">
+    <div class="text-center mb-12">
+      <h1 class="text-4xl font-extrabold text-gray-900 mb-4">Simple, transparent pricing</h1>
+      <p class="text-lg text-gray-600 max-w-2xl mx-auto">Choose the plan that fits your team. Cancel anytime. Save ~25% by subscribing here instead of in-app.</p>
+    </div>
+
+    <!-- Email input -->
+    <div class="max-w-md mx-auto mb-12">
+      <label for="email" class="block text-sm font-medium text-gray-700 mb-2">Your SiteStream account email</label>
+      <input type="email" id="email" placeholder="you@company.com.au"
+        class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-teal-500 focus:border-teal-500 text-lg">
+      <p class="text-xs text-gray-400 mt-1">Use the same email you signed up with in the app</p>
+    </div>
+
+    <!-- Pricing Cards -->
+    <div class="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+      
+      <!-- Free -->
+      <div class="bg-white rounded-2xl p-8 border border-gray-200 flex flex-col">
+        <h3 class="text-lg font-semibold text-gray-900">Free</h3>
+        <div class="mt-4 mb-6">
+          <span class="text-4xl font-extrabold text-gray-900">$0</span>
+          <span class="text-gray-500">/month</span>
+        </div>
+        <ul class="space-y-3 mb-8 flex-1 text-sm text-gray-600">
+          <li class="flex items-start gap-2"><svg class="w-5 h-5 text-teal-500 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Up to 2 projects</li>
+          <li class="flex items-start gap-2"><svg class="w-5 h-5 text-teal-500 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Basic RFI management</li>
+          <li class="flex items-start gap-2"><svg class="w-5 h-5 text-teal-500 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Photo documentation</li>
+        </ul>
+        <div class="text-center text-sm text-gray-400 py-3">Current plan</div>
+      </div>
+
+      <!-- Pro -->
+      <div class="bg-white rounded-2xl p-8 card-highlight flex flex-col shadow-lg">
+        <h3 class="text-lg font-semibold text-gray-900">Pro</h3>
+        <div class="mt-4 mb-2">
+          <span class="text-4xl font-extrabold text-gray-900">$29<sup class="text-lg">.99</sup></span>
+          <span class="text-gray-500">/month</span>
+        </div>
+        <p class="text-xs text-teal-600 font-medium mb-6">Save $9/mo vs in-app purchase</p>
+        <ul class="space-y-3 mb-8 flex-1 text-sm text-gray-600">
+          <li class="flex items-start gap-2"><svg class="w-5 h-5 text-teal-500 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Unlimited projects</li>
+          <li class="flex items-start gap-2"><svg class="w-5 h-5 text-teal-500 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Voice-to-RFI</li>
+          <li class="flex items-start gap-2"><svg class="w-5 h-5 text-teal-500 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>AI insights & suggestions</li>
+          <li class="flex items-start gap-2"><svg class="w-5 h-5 text-teal-500 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Photo AI captions</li>
+          <li class="flex items-start gap-2"><svg class="w-5 h-5 text-teal-500 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Invoicing & payments</li>
+          <li class="flex items-start gap-2"><svg class="w-5 h-5 text-teal-500 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Priority support</li>
+        </ul>
+        <button onclick="subscribe('price_1T67tjQ0JSeqJZTSReqcCJEO')"
+          class="w-full py-3 px-6 rounded-xl font-semibold text-white transition"
+          style="background: linear-gradient(135deg, #14B8A6, #0D9488);"
+          onmouseover="this.style.opacity='0.9'" onmouseout="this.style.opacity='1'">
+          Subscribe to Pro
+        </button>
+      </div>
+
+      <!-- Enterprise -->
+      <div class="bg-white rounded-2xl p-8 border border-gray-200 flex flex-col">
+        <h3 class="text-lg font-semibold text-gray-900">Enterprise</h3>
+        <div class="mt-4 mb-2">
+          <span class="text-4xl font-extrabold text-gray-900">$79<sup class="text-lg">.99</sup></span>
+          <span class="text-gray-500">/month</span>
+        </div>
+        <p class="text-xs text-teal-600 font-medium mb-6">Save $24/mo vs in-app purchase</p>
+        <ul class="space-y-3 mb-8 flex-1 text-sm text-gray-600">
+          <li class="flex items-start gap-2"><svg class="w-5 h-5 text-teal-500 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Everything in Pro</li>
+          <li class="flex items-start gap-2"><svg class="w-5 h-5 text-teal-500 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Team management</li>
+          <li class="flex items-start gap-2"><svg class="w-5 h-5 text-teal-500 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Advanced analytics</li>
+          <li class="flex items-start gap-2"><svg class="w-5 h-5 text-teal-500 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Custom branding</li>
+          <li class="flex items-start gap-2"><svg class="w-5 h-5 text-teal-500 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Dedicated account manager</li>
+          <li class="flex items-start gap-2"><svg class="w-5 h-5 text-teal-500 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>SLA guarantee</li>
+        </ul>
+        <button onclick="subscribe('price_1T67tkQ0JSeqJZTSwe0mMZbr')"
+          class="w-full py-3 px-6 rounded-xl font-semibold text-gray-700 border-2 border-gray-300 hover:border-teal-500 hover:text-teal-600 transition">
+          Subscribe to Enterprise
+        </button>
+      </div>
+    </div>
+
+    <!-- FAQ -->
+    <div class="max-w-2xl mx-auto mt-16">
+      <h2 class="text-2xl font-bold text-gray-900 text-center mb-8">Frequently Asked Questions</h2>
+      <div class="space-y-4">
+        <details class="bg-white rounded-xl p-5 border border-gray-200">
+          <summary class="font-medium text-gray-900 cursor-pointer">Why is it cheaper here than in-app?</summary>
+          <p class="text-gray-600 mt-3 text-sm">Apple charges a 30% commission on in-app purchases. By subscribing on our website, we pass those savings directly to you.</p>
+        </details>
+        <details class="bg-white rounded-xl p-5 border border-gray-200">
+          <summary class="font-medium text-gray-900 cursor-pointer">Will my subscription work in the app?</summary>
+          <p class="text-gray-600 mt-3 text-sm">Yes! Use the same email address you signed up with. Your subscription activates instantly across all devices.</p>
+        </details>
+        <details class="bg-white rounded-xl p-5 border border-gray-200">
+          <summary class="font-medium text-gray-900 cursor-pointer">Can I cancel anytime?</summary>
+          <p class="text-gray-600 mt-3 text-sm">Absolutely. Cancel with one click from your account settings or email us. No lock-in contracts, no hidden fees.</p>
+        </details>
+        <details class="bg-white rounded-xl p-5 border border-gray-200">
+          <summary class="font-medium text-gray-900 cursor-pointer">What payment methods do you accept?</summary>
+          <p class="text-gray-600 mt-3 text-sm">We accept all major credit/debit cards (Visa, Mastercard, Amex) and Apple Pay/Google Pay via Stripe's secure checkout.</p>
+        </details>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-gray-900 text-gray-400 py-8 mt-16">
+    <div class="max-w-6xl mx-auto px-4 text-center text-sm">
+      <p>© 2026 SiteStream. All rights reserved. <a href="/terms" class="hover:text-white">Terms</a> · <a href="/privacy" class="hover:text-white">Privacy</a></p>
+    </div>
+  </footer>
+
+  <script>
+    async function subscribe(priceId) {
+      const email = document.getElementById('email').value.trim();
+      if (!email || !email.includes('@')) {
+        alert('Please enter your SiteStream account email address.');
+        return;
+      }
+
+      const btn = event.target;
+      const originalText = btn.textContent;
+      btn.textContent = 'Redirecting...';
+      btn.disabled = true;
+
+      try {
+        const res = await fetch('https://rmtwafrxuitowmuhhhgx.supabase.co/functions/v1/stripe-subscribe', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ priceId, email }),
+        });
+
+        const data = await res.json();
+        if (data.url) {
+          window.location.href = data.url;
+        } else {
+          alert(data.error || 'Something went wrong. Please try again.');
+          btn.textContent = originalText;
+          btn.disabled = false;
+        }
+      } catch (err) {
+        alert('Network error. Please try again.');
+        btn.textContent = originalText;
+        btn.disabled = false;
+      }
+    }
+  </script>
+</body>
+</html>
