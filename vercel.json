@@ -1,6 +1,6 @@
 {
   "cleanUrls": true,
-  "rewrites": [
-    { "source": "/rfi/:path*", "destination": "/rfi/index.html" }
+  "routes": [
+    { "src": "/rfi/(.+)", "dest": "/rfi/respond.html" }
   ]
 }
