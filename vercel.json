@@ -1,6 +1,6 @@
 {
   "cleanUrls": true,
   "rewrites": [
-    { "source": "/rfi/:token([A-Za-z0-9]+)", "destination": "/rfi/index.html" }
+    { "source": "/rfi/:path*", "destination": "/rfi/index.html" }
   ]
 }
