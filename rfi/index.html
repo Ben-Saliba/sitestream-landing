@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>SiteStream — RFI Response</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="icon" href="/images/favicon.ico">
+  <style>
+    :root {
+      --bg: #0a1628;
+      --card: #111d2e;
+      --border: rgba(255,255,255,0.08);
+      --teal: #0D9488;
+      --teal-light: #14B8A6;
+      --text: #e2e8f0;
+      --text-muted: #94a3b8;
+      --text-dim: #64748b;
+      --red: #ef4444;
+      --amber: #f59e0b;
+      --green: #10b981;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .header {
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: rgba(17,29,46,0.8);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+    .header img { height: 28px; width: auto; }
+    .header span { font-size: 15px; font-weight: 600; letter-spacing: -0.3px; }
+
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    .loading, .error-page, .expired-page {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 60vh;
+      text-align: center;
+      gap: 16px;
+    }
+    .spinner {
+      width: 32px; height: 32px;
+      border: 3px solid var(--border);
+      border-top: 3px solid var(--teal);
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    .error-page h2, .expired-page h2 { font-size: 20px; }
+    .error-page p, .expired-page p { color: var(--text-muted); font-size: 14px; max-width: 300px; }
+
+    /* RFI Card */
+    .rfi-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+      margin-bottom: 16px;
+    }
+    .rfi-meta {
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .rfi-meta .project {
+      font-size: 12px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .rfi-meta .ref {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--teal);
+      background: rgba(13,148,136,0.1);
+      padding: 4px 10px;
+      border-radius: 20px;
+    }
+
+    .rfi-body { padding: 20px; }
+    .rfi-body h1 {
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      letter-spacing: -0.3px;
+      line-height: 1.3;
+    }
+    .rfi-body .desc {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.6;
+      white-space: pre-wrap;
+    }
+
+    .urgency-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 11px;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 20px;
+      margin-top: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
+    }
+    .urgency-normal { background: rgba(16,185,129,0.1); color: var(--green); }
+    .urgency-urgent { background: rgba(245,158,11,0.1); color: var(--amber); }
+    .urgency-priority { background: rgba(239,68,68,0.1); color: var(--red); }
+
+    .from-line {
+      padding: 12px 20px;
+      border-top: 1px solid var(--border);
+      font-size: 12px;
+      color: var(--text-dim);
+    }
+    .from-line strong { color: var(--text-muted); }
+
+    /* Photos */
+    .photos {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding: 0 20px 16px;
+      -webkit-overflow-scrolling: touch;
+    }
+    .photos img {
+      height: 120px;
+      border-radius: 10px;
+      object-fit: cover;
+      flex-shrink: 0;
+    }
+
+    /* Previous responses */
+    .responses-section { margin-bottom: 16px; }
+    .responses-section h3 {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .response-item {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 14px 16px;
+      margin-bottom: 8px;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+    .response-item .time {
+      font-size: 11px;
+      color: var(--text-dim);
+      margin-top: 6px;
+    }
+
+    /* Response form */
+    .response-form {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 20px;
+    }
+    .response-form h3 {
+      font-size: 15px;
+      font-weight: 600;
+      margin-bottom: 16px;
+    }
+    .form-group { margin-bottom: 14px; }
+    .form-group label {
+      display: block;
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+      font-weight: 500;
+    }
+    .form-group input, .form-group textarea {
+      width: 100%;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 12px 14px;
+      font-size: 15px;
+      color: var(--text);
+      outline: none;
+      transition: border-color 0.2s;
+      font-family: inherit;
+    }
+    .form-group input:focus, .form-group textarea:focus {
+      border-color: var(--teal);
+    }
+    .form-group textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    .submit-btn {
+      width: 100%;
+      padding: 14px;
+      background: var(--teal);
+      color: white;
+      border: none;
+      border-radius: 12px;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.1s;
+    }
+    .submit-btn:hover { background: var(--teal-light); }
+    .submit-btn:active { transform: scale(0.98); }
+    .submit-btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .closed-badge {
+      text-align: center;
+      padding: 16px;
+      background: rgba(16,185,129,0.08);
+      border: 1px solid rgba(16,185,129,0.2);
+      border-radius: 12px;
+      color: var(--green);
+      font-weight: 600;
+      font-size: 14px;
+    }
+
+    /* Success / CTA */
+    .success-screen {
+      text-align: center;
+      padding: 40px 20px;
+    }
+    .success-icon {
+      width: 64px; height: 64px;
+      background: rgba(16,185,129,0.1);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+    }
+    .success-icon svg { width: 32px; height: 32px; color: var(--green); }
+    .success-screen h2 {
+      font-size: 22px;
+      margin-bottom: 8px;
+    }
+    .success-screen p {
+      color: var(--text-muted);
+      font-size: 14px;
+      margin-bottom: 24px;
+    }
+
+    .cta-card {
+      background: linear-gradient(135deg, rgba(13,148,136,0.15), rgba(13,148,136,0.05));
+      border: 1px solid rgba(13,148,136,0.3);
+      border-radius: 16px;
+      padding: 24px;
+      text-align: center;
+      margin-top: 24px;
+    }
+    .cta-card h3 {
+      font-size: 17px;
+      margin-bottom: 8px;
+    }
+    .cta-card p {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 16px;
+      line-height: 1.5;
+    }
+    .cta-card .features {
+      text-align: left;
+      margin-bottom: 16px;
+    }
+    .cta-card .features li {
+      font-size: 13px;
+      color: var(--text-muted);
+      padding: 4px 0;
+      list-style: none;
+    }
+    .cta-card .features li::before {
+      content: "✓ ";
+      color: var(--teal);
+      font-weight: bold;
+    }
+    .app-store-btn {
+      display: inline-block;
+      padding: 12px 24px;
+      background: var(--teal);
+      color: white;
+      text-decoration: none;
+      border-radius: 12px;
+      font-weight: 600;
+      font-size: 14px;
+      transition: background 0.2s;
+    }
+    .app-store-btn:hover { background: var(--teal-light); }
+
+    .another-response-btn {
+      display: block;
+      margin-top: 12px;
+      padding: 10px;
+      background: transparent;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      color: var(--text-muted);
+      font-size: 13px;
+      cursor: pointer;
+      width: 100%;
+      transition: border-color 0.2s;
+    }
+    .another-response-btn:hover { border-color: var(--text-dim); }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <img src="/images/logo-80.png" alt="SiteStream" onerror="this.style.display='none'">
+    <span>SiteStream</span>
+  </div>
+
+  <div class="container">
+    <div id="loading" class="loading">
+      <div class="spinner"></div>
+      <p style="color: var(--text-muted); font-size: 14px;">Loading RFI details...</p>
+    </div>
+
+    <div id="error" class="error-page" style="display:none;">
+      <h2>⚠️ Link Invalid</h2>
+      <p id="error-message">This RFI link is invalid or has expired.</p>
+    </div>
+
+    <div id="content" style="display:none;"></div>
+  </div>
+
+  <script>
+    const SUPABASE_URL = 'https://rmtwafrxuitowmuhhhgx.supabase.co';
+    const APP_STORE_URL = 'https://apps.apple.com/app/sitestream/id6757634679';
+
+    // Extract token from URL path: /rfi/TOKEN or /rfi/?token=TOKEN
+    function getToken() {
+      const path = window.location.pathname;
+      const parts = path.split('/').filter(Boolean);
+      // /rfi/TOKEN
+      if (parts.length >= 2 && parts[0] === 'rfi') {
+        return parts[1];
+      }
+      // Fallback to query param
+      return new URLSearchParams(window.location.search).get('token');
+    }
+
+    async function loadRFI() {
+      const token = getToken();
+      if (!token) {
+        showError('No token provided. Please check your link.');
+        return;
+      }
+
+      try {
+        const res = await fetch(`${SUPABASE_URL}/functions/v1/rfi-respond-public?token=${encodeURIComponent(token)}`);
+        const data = await res.json();
+
+        if (!res.ok) {
+          if (res.status === 410) {
+            showError('This link has expired. Please ask the sender for a new link.');
+          } else {
+            showError(data.error || 'Failed to load RFI details.');
+          }
+          return;
+        }
+
+        renderRFI(data, token);
+      } catch (err) {
+        showError('Network error. Please check your connection and try again.');
+      }
+    }
+
+    function showError(msg) {
+      document.getElementById('loading').style.display = 'none';
+      document.getElementById('error').style.display = 'flex';
+      document.getElementById('error-message').textContent = msg;
+    }
+
+    function renderRFI(data, token) {
+      const { rfi, photos, responses, recipient, is_closed } = data;
+      document.getElementById('loading').style.display = 'none';
+      const content = document.getElementById('content');
+      content.style.display = 'block';
+
+      const urgencyClass = rfi.urgency === 'priority' ? 'urgency-priority' : rfi.urgency === 'urgent' ? 'urgency-urgent' : 'urgency-normal';
+      const urgencyLabel = rfi.urgency === 'priority' ? '🔴 Priority' : rfi.urgency === 'urgent' ? '🟡 Urgent' : '🟢 Normal';
+
+      const photosHtml = photos.length > 0 ? `
+        <div class="photos">
+          ${photos.map(p => `<img src="${p.photo_url}" alt="${p.ai_caption || 'RFI Photo'}" loading="lazy">`).join('')}
+        </div>
+      ` : '';
+
+      const responsesHtml = responses.length > 0 ? `
+        <div class="responses-section">
+          <h3>Previous Responses (${responses.length})</h3>
+          ${responses.map(r => `
+            <div class="response-item">
+              ${escapeHtml(r.message)}
+              <div class="time">${formatDate(r.created_at)}</div>
+            </div>
+          `).join('')}
+        </div>
+      ` : '';
+
+      const formHtml = is_closed ? `
+        <div class="closed-badge">✅ This RFI has been closed</div>
+      ` : `
+        <div class="response-form">
+          <h3>Your Response</h3>
+          <div class="form-group">
+            <label>Your Name</label>
+            <input type="text" id="responder-name" placeholder="e.g. John Smith" value="${escapeHtml(recipient.name || '')}">
+          </div>
+          <div class="form-group">
+            <label>Response</label>
+            <textarea id="response-message" placeholder="Type your response here..."></textarea>
+          </div>
+          <button class="submit-btn" id="submit-btn" onclick="submitResponse('${token}')">Submit Response</button>
+        </div>
+      `;
+
+      content.innerHTML = `
+        <div class="rfi-card">
+          <div class="rfi-meta">
+            <span class="project">${escapeHtml(rfi.project_name)}</span>
+            <span class="ref">${escapeHtml(rfi.reference_number || 'RFI')}</span>
+          </div>
+          <div class="rfi-body">
+            <h1>${escapeHtml(rfi.title)}</h1>
+            <p class="desc">${escapeHtml(rfi.description || '')}</p>
+            <span class="urgency-badge ${urgencyClass}">${urgencyLabel}</span>
+          </div>
+          ${photosHtml}
+          <div class="from-line">
+            From <strong>${escapeHtml(rfi.creator_name)}</strong>${rfi.creator_company ? ` · ${escapeHtml(rfi.creator_company)}` : ''} · ${formatDate(rfi.created_at)}
+          </div>
+        </div>
+        ${responsesHtml}
+        ${formHtml}
+      `;
+    }
+
+    async function submitResponse(token) {
+      const btn = document.getElementById('submit-btn');
+      const message = document.getElementById('response-message').value.trim();
+      const name = document.getElementById('responder-name').value.trim();
+
+      if (!message) {
+        alert('Please enter a response.');
+        return;
+      }
+
+      btn.disabled = true;
+      btn.textContent = 'Submitting...';
+
+      try {
+        const res = await fetch(`${SUPABASE_URL}/functions/v1/rfi-respond-public`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ token, message, responder_name: name }),
+        });
+
+        const data = await res.json();
+
+        if (!res.ok) {
+          alert(data.error || 'Failed to submit response.');
+          btn.disabled = false;
+          btn.textContent = 'Submit Response';
+          return;
+        }
+
+        showSuccess(name, data.response_count);
+      } catch (err) {
+        alert('Network error. Please try again.');
+        btn.disabled = false;
+        btn.textContent = 'Submit Response';
+      }
+    }
+
+    function showSuccess(name, responseCount) {
+      const content = document.getElementById('content');
+      content.innerHTML = `
+        <div class="success-screen">
+          <div class="success-icon">
+            <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+          </div>
+          <h2>Response Submitted</h2>
+          <p>Your response has been recorded with a full audit trail and timestamp.</p>
+
+          <div class="cta-card">
+            <h3>Get the SiteStream App</h3>
+            <p>Track all your RFIs, get push notifications, and build your professional performance profile.</p>
+            <ul class="features">
+              <li>Instant push notifications for new RFIs</li>
+              <li>Voice-to-RFI — describe it, we write it</li>
+              <li>Photo AI — snap a photo, get context</li>
+              <li>Full audit trail for dispute protection</li>
+              <li>Track your response time performance</li>
+            </ul>
+            <a href="${APP_STORE_URL}" class="app-store-btn">Download on the App Store</a>
+          </div>
+
+          <button class="another-response-btn" onclick="location.reload()">← Back to RFI</button>
+        </div>
+      `;
+    }
+
+    function escapeHtml(str) {
+      if (!str) return '';
+      return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+    }
+
+    function formatDate(iso) {
+      if (!iso) return '';
+      const d = new Date(iso);
+      return d.toLocaleDateString('en-AU', { day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' });
+    }
+
+    // Init
+    loadRFI();
+  </script>
+</body>
+</html>
