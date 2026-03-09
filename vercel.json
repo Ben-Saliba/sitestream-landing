@@ -1,6 +1,5 @@
 {
-  "cleanUrls": true,
-  "routes": [
-    { "src": "/rfi/(.+)", "dest": "/rfi/respond.html" }
+  "rewrites": [
+    { "source": "/rfi/:token", "destination": "/rfi/respond.html" }
   ]
 }
