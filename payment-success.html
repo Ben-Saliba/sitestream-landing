@@ -54,18 +54,60 @@
       <p class="text-gray-600 text-lg mb-6">
         Your payment for invoice <span id="invoice-number" class="font-semibold text-gray-900"></span> has been received. The sender will be notified automatically.
       </p>
-      <p class="text-gray-400 text-sm">You can close this page.</p>
+      
+      <p id="redirect-notice" class="text-primary font-semibold text-sm mb-4" style="display: none;">Returning to SiteStream in <span id="countdown">3</span>s...</p>
+      
+      <!-- Deep link back to app -->
+      <a id="back-to-app" href="#" class="inline-flex items-center gap-2 bg-primary hover:bg-primary-dark text-white px-6 py-3 rounded-full font-semibold transition mb-4" style="display: none;">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+        Return to SiteStream
+      </a>
+      
+      <p id="close-text" class="text-gray-400 text-sm" style="display: none;">Or close this page to continue.</p>
     </div>
   </main>
 
   <script>
     const params = new URLSearchParams(window.location.search);
-    const invoice = params.get('invoice');
+    const invoiceDisplay = params.get('invoice');
+    const invoiceId = params.get('id');
     const el = document.getElementById('invoice-number');
-    if (invoice) {
-      el.textContent = invoice;
+    const backBtn = document.getElementById('back-to-app');
+    
+    if (invoiceDisplay) {
+      el.textContent = invoiceDisplay;
     } else {
       el.parentElement.innerHTML = 'Your payment has been received. The sender will be notified automatically.';
+    }
+    
+    // Deep link back to the app
+    const redirectNotice = document.getElementById('redirect-notice');
+    const countdownEl = document.getElementById('countdown');
+    const closeText = document.getElementById('close-text');
+    
+    function showReturnLink(deepLink) {
+      backBtn.href = deepLink;
+      backBtn.style.display = 'inline-flex';
+      redirectNotice.style.display = 'block';
+      closeText.style.display = 'block';
+      
+      let seconds = 3;
+      const timer = setInterval(() => {
+        seconds--;
+        countdownEl.textContent = seconds;
+        if (seconds <= 0) {
+          clearInterval(timer);
+          redirectNotice.textContent = 'Redirecting...';
+          window.location.href = deepLink;
+        }
+      }, 1000);
+    }
+    
+    if (invoiceId) {
+      showReturnLink('sitestream://invoice/' + invoiceId + '?paid=true');
+    } else {
+      // No invoice ID in params (e.g. Apple Pay flow) — still show return to app
+      showReturnLink('sitestream://invoices?paid=true');
     }
   </script>
 </body>
