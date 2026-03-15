@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Welcome to SiteStream Pro!</title>
+  <title>Welcome to SiteStream!</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="icon" type="image/png" href="../images/logo-80.png">
   <script src="https://cdn.tailwindcss.com"></script>
@@ -18,13 +18,58 @@
         </svg>
       </div>
       <h1 class="text-2xl font-bold text-gray-900 mb-3">You're all set! 🎉</h1>
-      <p class="text-gray-600 mb-6">Your subscription is now active. Open SiteStream on your device and all Pro features will be unlocked.</p>
+      <p id="success-msg" class="text-gray-600 mb-6">Your subscription is now active. Open SiteStream on your device and all features will be unlocked.</p>
       <p class="text-sm text-gray-400 mb-8">A confirmation email has been sent to your inbox.</p>
-      <a href="/" class="inline-block py-3 px-8 rounded-xl font-semibold text-white transition"
-        style="background: linear-gradient(135deg, #14B8A6, #0D9488);">
-        Back to SiteStream
-      </a>
+      
+      <!-- App link (shown for app subscriptions) -->
+      <div id="app-cta">
+        <a href="/" class="inline-block py-3 px-8 rounded-xl font-semibold text-white transition"
+          style="background: linear-gradient(135deg, #14B8A6, #0D9488);">
+          Back to SiteStream
+        </a>
+      </div>
+      
+      <!-- Intelligence link (shown for Intelligence subscriptions) -->
+      <div id="intel-cta" style="display:none;">
+        <a href="https://intelligence.sitestream.au" class="inline-block py-3 px-8 rounded-xl font-semibold text-white transition mb-3"
+          style="background: linear-gradient(135deg, #8B5CF6, #7C3AED);">
+          Open Intelligence Dashboard →
+        </a>
+        <br>
+        <a href="/" class="inline-block mt-3 text-sm text-gray-500 hover:text-gray-700 transition">
+          or go to sitestream.au
+        </a>
+      </div>
     </div>
   </div>
+
+  <script>
+    // Detect if this was an Intelligence subscription purchase
+    const params = new URLSearchParams(window.location.search);
+    const sessionId = params.get('session_id');
+    
+    // Check URL hash or referrer for Intelligence context
+    if (document.referrer.includes('intelligence') || window.location.hash === '#intelligence') {
+      showIntelligence();
+    }
+    
+    // Also try to check the checkout session metadata
+    if (sessionId) {
+      fetch('https://rmtwafrxuitowmuhhhgx.supabase.co/functions/v1/stripe-subscribe', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ action: 'check-session', sessionId }),
+      }).then(r => r.json()).then(data => {
+        if (data.isIntelligence) showIntelligence();
+      }).catch(() => {});
+    }
+    
+    function showIntelligence() {
+      document.getElementById('success-msg').textContent = 
+        'Your Intelligence subscription is now active. Log in to the Intelligence Dashboard to start analysing your construction portfolio.';
+      document.getElementById('app-cta').style.display = 'none';
+      document.getElementById('intel-cta').style.display = 'block';
+    }
+  </script>
 </body>
 </html>
