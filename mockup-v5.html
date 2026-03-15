@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SiteStream — AI-Powered Construction RFI Management</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="images/logo-80.png">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    :root {
+      --teal: #14B8A6;
+      --teal-dark: #0d9488;
+      --teal-bright: #2dd4bf;
+      --teal-bg: rgba(20, 184, 166, 0.06);
+      --teal-border: rgba(20, 184, 166, 0.15);
+      --navy: #0a1628;
+      --navy-light: #111d33;
+      --white: #ffffff;
+      --gray-50: #f9fafb;
+      --gray-100: #f3f4f6;
+      --gray-200: #e5e7eb;
+      --gray-300: #d1d5db;
+      --gray-400: #9ca3af;
+      --gray-500: #6b7280;
+      --gray-600: #4b5563;
+      --gray-900: #111827;
+    }
+    
+    html { scroll-behavior: smooth; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--white); color: var(--gray-900); overflow-x: hidden; }
+
+    /* ═══ NAV ═══ */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      padding: 1rem 2rem;
+      display: flex; align-items: center; justify-content: space-between;
+      background: rgba(255,255,255,0.92); backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--gray-100);
+    }
+    .nav-brand { display: flex; align-items: center; gap: 0.6rem; text-decoration: none; }
+    .nav-logo { width: 36px; height: 36px; border-radius: 10px; }
+    .nav-name { font-size: 1.2rem; font-weight: 700; color: var(--gray-900); letter-spacing: -0.02em; }
+    .nav-links { display: flex; align-items: center; gap: 2rem; list-style: none; }
+    .nav-links a { color: var(--gray-500); text-decoration: none; font-size: 0.88rem; font-weight: 500; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--teal-dark); }
+    .nav-cta {
+      padding: 0.55rem 1.4rem; background: var(--teal); color: var(--white) !important;
+      border-radius: 10px; font-weight: 600 !important; transition: all 0.2s; font-size: 0.88rem !important;
+    }
+    .nav-cta:hover { background: var(--teal-dark) !important; box-shadow: 0 4px 16px rgba(20,184,166,0.25); }
+
+    /* ═══ BUTTONS ═══ */
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 0.9rem 1.8rem; background: var(--teal); color: var(--white);
+      border: none; border-radius: 12px; font-size: 0.95rem; font-weight: 700;
+      cursor: pointer; transition: all 0.25s; text-decoration: none; font-family: inherit;
+    }
+    .btn-primary:hover { background: var(--teal-dark); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(20,184,166,0.25); }
+    .btn-ghost {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 0.9rem 1.8rem; background: transparent; color: var(--gray-600);
+      border: 1.5px solid var(--gray-200); border-radius: 12px;
+      font-size: 0.95rem; font-weight: 600; cursor: pointer; transition: all 0.25s;
+      text-decoration: none; font-family: inherit;
+    }
+    .btn-ghost:hover { border-color: var(--teal); color: var(--teal-dark); }
+
+    /* ═══ HERO ═══ */
+    .hero {
+      min-height: 100vh; display: flex; align-items: center;
+      padding: 7rem 2rem 3rem; position: relative;
+    }
+    .hero-inner {
+      max-width: 1200px; margin: 0 auto; width: 100%;
+      display: grid; grid-template-columns: 1fr 1.15fr; gap: 2rem;
+      align-items: center;
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 0.35rem 0.9rem; background: var(--teal-bg);
+      border: 1px solid var(--teal-border); border-radius: 100px;
+      font-size: 0.78rem; font-weight: 600; color: var(--teal-dark);
+      margin-bottom: 1.25rem;
+    }
+    .hero-badge .dot { width: 6px; height: 6px; background: var(--teal); border-radius: 50%; animation: pulse 2s infinite; }
+    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+    
+    .hero h1 {
+      font-size: clamp(2.4rem, 4.5vw, 3.5rem); font-weight: 800;
+      line-height: 1.1; letter-spacing: -0.03em; margin-bottom: 1.25rem;
+    }
+    .hero h1 .teal {
+      background: linear-gradient(135deg, var(--teal), var(--teal-bright));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .hero-sub {
+      font-size: 1.05rem; color: var(--gray-500); line-height: 1.7;
+      max-width: 440px; margin-bottom: 2rem;
+    }
+    .hero-actions { display: flex; gap: 0.75rem; }
+    
+    .hero-visual {
+      display: flex; justify-content: center; align-items: center;
+    }
+    .hero-visual img {
+      width: 100%; max-width: 580px;
+      filter: drop-shadow(0 20px 40px rgba(0,0,0,0.06));
+    }
+
+    /* ═══ TRUST ═══ */
+    .trust {
+      padding: 2.5rem 2rem;
+      border-top: 1px solid var(--gray-100);
+      border-bottom: 1px solid var(--gray-100);
+      background: var(--gray-50);
+    }
+    .trust-inner {
+      max-width: 900px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: center; gap: 3rem;
+    }
+    .trust-stat { text-align: center; }
+    .trust-num { font-size: 1.4rem; font-weight: 800; font-family: 'Space Mono', monospace; color: var(--teal-dark); }
+    .trust-label { font-size: 0.72rem; color: var(--gray-400); margin-top: 2px; }
+    .trust-div { width: 1px; height: 36px; background: var(--gray-200); }
+
+    /* ═══ FEATURES (minimal, alternating) ═══ */
+    .feat { padding: 5rem 2rem; }
+    .feat.gray { background: var(--gray-50); }
+    .feat-inner {
+      max-width: 1100px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;
+    }
+    .feat-inner.reverse { direction: rtl; }
+    .feat-inner.reverse > * { direction: ltr; }
+    
+    .feat-tag {
+      display: inline-block; padding: 3px 10px; background: var(--teal-bg);
+      border-radius: 6px; font-size: 0.68rem; font-weight: 700;
+      color: var(--teal-dark); text-transform: uppercase; letter-spacing: 0.08em;
+      margin-bottom: 0.75rem;
+    }
+    .feat h3 {
+      font-size: 1.6rem; font-weight: 800; letter-spacing: -0.02em;
+      line-height: 1.15; margin-bottom: 0.75rem;
+    }
+    .feat p { font-size: 0.92rem; color: var(--gray-500); line-height: 1.65; margin-bottom: 1.25rem; }
+    
+    .feat-bullets { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
+    .feat-bullets li {
+      display: flex; align-items: center; gap: 8px;
+      font-size: 0.85rem; color: var(--gray-600);
+    }
+    .feat-bullets .ck {
+      width: 20px; height: 20px; border-radius: 6px; background: var(--teal-bg);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.65rem; color: var(--teal-dark); font-weight: 700; flex-shrink: 0;
+    }
+
+    /* Phone frames */
+    .feat-visual { display: flex; justify-content: center; }
+    .ph {
+      border-radius: 32px; border: 2px solid var(--gray-200);
+      overflow: hidden; background: var(--white);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.06);
+      transition: transform 0.35s, box-shadow 0.35s;
+    }
+    .ph:hover { transform: translateY(-6px) rotate(0deg) !important; box-shadow: 0 28px 56px rgba(0,0,0,0.1); }
+    .ph img { width: 100%; display: block; }
+    .ph.single { width: 260px; }
+    .ph.tl { transform: rotate(-3deg); }
+    .ph.tr { transform: rotate(3deg); }
+    
+    .dual { display: flex; gap: 1.25rem; justify-content: center; align-items: flex-start; }
+    .dual .ph { width: 200px; }
+    .dual .ph:first-child { transform: rotate(-4deg) translateY(16px); }
+    .dual .ph:last-child { transform: rotate(3deg); }
+
+    /* ═══ INTELLIGENCE (dark) ═══ */
+    .intel {
+      padding: 5rem 2rem; background: var(--navy); color: var(--white);
+      position: relative; overflow: hidden;
+    }
+    .intel::before {
+      content: ''; position: absolute; top: -150px; right: -150px;
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, rgba(20,184,166,0.08) 0%, transparent 70%);
+      filter: blur(60px);
+    }
+    .intel-inner { max-width: 1100px; margin: 0 auto; text-align: center; position: relative; z-index: 2; }
+    .intel .section-tag {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 0.35rem 0.9rem; background: rgba(20,184,166,0.12);
+      border: 1px solid rgba(20,184,166,0.2); border-radius: 100px;
+      font-size: 0.72rem; font-weight: 700; color: var(--teal-bright);
+      text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.75rem;
+    }
+    .intel h2 {
+      font-size: clamp(1.8rem, 3.5vw, 2.5rem); font-weight: 800;
+      letter-spacing: -0.03em; line-height: 1.1; margin-bottom: 0.75rem;
+    }
+    .intel .sub { font-size: 1rem; color: rgba(255,255,255,0.45); max-width: 500px; margin: 0 auto 2.5rem; line-height: 1.6; }
+    
+    .intel-card {
+      background: var(--navy-light); border: 1px solid rgba(255,255,255,0.05);
+      border-radius: 18px; overflow: hidden; box-shadow: 0 30px 60px rgba(0,0,0,0.3);
+      text-align: left;
+    }
+    .intel-bar {
+      display: flex; align-items: center; padding: 10px 16px;
+      background: rgba(255,255,255,0.02); border-bottom: 1px solid rgba(255,255,255,0.04); gap: 7px;
+    }
+    .d { width: 9px; height: 9px; border-radius: 50%; }
+    .d.r { background: #ef4444; } .d.y { background: #f59e0b; } .d.g { background: #22c55e; }
+    .u { margin-left: 10px; font-size: 0.7rem; color: rgba(255,255,255,0.25); font-family: 'Space Mono', monospace; }
+    
+    .intel-grid {
+      padding: 1.5rem; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0.75rem; margin-bottom: 1.25rem;
+    }
+    .im {
+      background: rgba(255,255,255,0.03); border-radius: 12px; padding: 1rem;
+      border: 1px solid rgba(255,255,255,0.03);
+    }
+    .im .l { font-size: 0.65rem; color: rgba(255,255,255,0.35); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 4px; }
+    .im .v { font-size: 1.3rem; font-weight: 800; font-family: 'Space Mono', monospace; }
+    .im .v.t { color: var(--teal-bright); } .im .v.w { color: var(--white); }
+    .im .c { font-size: 0.65rem; margin-top: 3px; }
+    .c.up { color: #22c55e; }
+    
+    .intel-bars { padding: 0 1.5rem 1.5rem; }
+    .intel-bars-title { font-size: 0.8rem; font-weight: 700; margin-bottom: 10px; color: rgba(255,255,255,0.7); }
+    .ib { display: grid; grid-template-columns: 110px 1fr 40px; align-items: center; gap: 10px; margin-bottom: 8px; }
+    .ib .n { font-size: 0.75rem; color: rgba(255,255,255,0.6); }
+    .ib .tr { height: 6px; background: rgba(255,255,255,0.05); border-radius: 3px; overflow: hidden; }
+    .ib .fl { height: 100%; border-radius: 3px; background: var(--teal); }
+    .ib .s { font-size: 0.75rem; font-weight: 700; font-family: 'Space Mono', monospace; color: var(--teal-bright); text-align: right; }
+
+    /* ═══ PRICING ═══ */
+    .pricing { padding: 5rem 2rem; }
+    .pricing-inner { max-width: 840px; margin: 0 auto; text-align: center; }
+    .pricing h2 { font-size: clamp(1.8rem, 3.5vw, 2.5rem); font-weight: 800; letter-spacing: -0.03em; margin-bottom: 0.5rem; }
+    .pricing .sub { font-size: 1rem; color: var(--gray-400); margin-bottom: 2.5rem; }
+    .pricing-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+    .pc {
+      background: var(--white); border: 1.5px solid var(--gray-200);
+      border-radius: 20px; padding: 2rem 1.75rem; text-align: left; transition: all 0.3s;
+    }
+    .pc:hover { box-shadow: 0 16px 40px rgba(0,0,0,0.05); transform: translateY(-3px); }
+    .pc.pop { border-color: var(--teal); box-shadow: 0 0 0 1px var(--teal); position: relative; }
+    .pc.pop::before {
+      content: 'POPULAR'; position: absolute; top: -10px; left: 50%; transform: translateX(-50%);
+      padding: 3px 14px; background: var(--teal); color: var(--white); border-radius: 100px;
+      font-size: 0.6rem; font-weight: 800; letter-spacing: 0.08em;
+    }
+    .pc .pn { font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--teal-dark); margin-bottom: 0.75rem; }
+    .pc .pa { font-size: 2.2rem; font-weight: 800; font-family: 'Space Mono', monospace; color: var(--gray-900); }
+    .pc .pa span { font-size: 0.9rem; font-weight: 500; color: var(--gray-400); }
+    .pc .pp { font-size: 0.75rem; color: var(--gray-400); margin-bottom: 1.5rem; margin-top: 0.25rem; }
+    .pc ul { list-style: none; margin-bottom: 1.5rem; }
+    .pc ul li { padding: 0.4rem 0; font-size: 0.82rem; color: var(--gray-600); display: flex; align-items: center; gap: 7px; }
+    .pc ul li::before { content: '✓'; color: var(--teal); font-weight: 700; font-size: 0.8rem; }
+    .pb {
+      display: block; width: 100%; padding: 0.8rem; border-radius: 12px;
+      font-size: 0.9rem; font-weight: 700; text-align: center;
+      transition: all 0.25s; font-family: inherit; cursor: pointer; text-decoration: none;
+    }
+    .pb.fill { background: var(--teal); color: var(--white); border: none; }
+    .pb.fill:hover { background: var(--teal-dark); }
+    .pb.outline { background: transparent; color: var(--gray-600); border: 1.5px solid var(--gray-200); }
+    .pb.outline:hover { border-color: var(--teal); color: var(--teal-dark); }
+
+    /* ═══ CTA ═══ */
+    .cta { padding: 5rem 2rem; text-align: center; background: var(--gray-50); }
+    .cta h2 { font-size: clamp(1.8rem, 3.5vw, 2.5rem); font-weight: 800; letter-spacing: -0.03em; margin-bottom: 0.75rem; }
+    .cta p { color: var(--gray-500); font-size: 1rem; margin-bottom: 1.75rem; }
+
+    /* ═══ FOOTER ═══ */
+    footer { padding: 2.5rem 2rem; border-top: 1px solid var(--gray-100); }
+    .footer-inner { max-width: 1100px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+    .footer-copy { font-size: 0.75rem; color: var(--gray-400); }
+    .footer-links { display: flex; gap: 1.5rem; }
+    .footer-links a { font-size: 0.75rem; color: var(--gray-400); text-decoration: none; }
+    .footer-links a:hover { color: var(--teal-dark); }
+
+    /* ═══ RESPONSIVE ═══ */
+    @media (max-width: 768px) {
+      .hero-inner, .feat-inner, .feat-inner.reverse { grid-template-columns: 1fr; direction: ltr; text-align: center; }
+      .hero-sub { margin-left: auto; margin-right: auto; }
+      .hero-actions { justify-content: center; }
+      .hero-visual { margin-top: 2rem; }
+      .dual .ph { width: 160px; }
+      .pricing-grid { grid-template-columns: 1fr; }
+      .intel-grid { grid-template-columns: 1fr; }
+      .nav-links { display: none; }
+      .trust-inner { flex-wrap: wrap; gap: 1.5rem; }
+      .trust-div { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="#" class="nav-brand">
+      <img src="images/logo-80.png" alt="SiteStream" class="nav-logo">
+      <span class="nav-name">SiteStream</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#features">Features</a></li>
+      <li><a href="#intelligence">Intelligence</a></li>
+      <li><a href="#pricing">Pricing</a></li>
+      <li><a href="#" class="nav-cta">Download App</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-inner">
+      <div>
+        <div class="hero-badge"><span class="dot"></span> Built for Australian Construction</div>
+        <h1>Stop chasing<br>paperwork.<br><span class="teal">Start building.</span></h1>
+        <p class="hero-sub">Voice-powered RFI management that turns site chaos into structured data. Create, track, and resolve — all from your phone.</p>
+        <div class="hero-actions">
+          <a href="#" class="btn-primary">Download on iOS</a>
+          <a href="#features" class="btn-ghost">See How It Works</a>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <img src="images/hero-correct.png" alt="SiteStream App">
+      </div>
+    </div>
+  </section>
+
+  <!-- TRUST -->
+  <section class="trust">
+    <div class="trust-inner">
+      <div class="trust-stat"><div class="trust-num">55%</div><div class="trust-label">of builders still track RFIs manually</div></div>
+      <div class="trust-div"></div>
+      <div class="trust-stat"><div class="trust-num">3hrs</div><div class="trust-label">saved per day on average</div></div>
+      <div class="trust-div"></div>
+      <div class="trust-stat"><div class="trust-num">$0</div><div class="trust-label">to start — free plan available</div></div>
+    </div>
+  </section>
+
+  <!-- FEATURE 1 -->
+  <section class="feat" id="features">
+    <div class="feat-inner">
+      <div>
+        <div class="feat-tag">🎤 Voice-Powered</div>
+        <h3>Create an RFI without<br>touching your screen.</h3>
+        <p>On a scaffold. In PPE. Hands full. Just speak — AI transcribes, categorises, and routes it to the right consultant.</p>
+        <ul class="feat-bullets">
+          <li><span class="ck">✓</span>Construction-aware AI transcription</li>
+          <li><span class="ck">✓</span>Auto-categorises by discipline</li>
+          <li><span class="ck">✓</span>Routes to the right person</li>
+        </ul>
+      </div>
+      <div class="feat-visual">
+        <div class="ph single tr"><img src="images/screenshot-5-6.7.png" alt="Voice-to-RFI"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURE 2 -->
+  <section class="feat gray">
+    <div class="feat-inner reverse">
+      <div>
+        <div class="feat-tag">📸 Photo Intelligence</div>
+        <h3>Snap a photo.<br>AI does the rest.</h3>
+        <p>AI identifies the element, describes the defect, and recommends next steps — automatically attached to your RFI.</p>
+        <ul class="feat-bullets">
+          <li><span class="ck">✓</span>Element identification</li>
+          <li><span class="ck">✓</span>Defect detection & description</li>
+          <li><span class="ck">✓</span>Suggested actions & severity</li>
+        </ul>
+      </div>
+      <div class="feat-visual">
+        <div class="ph single tl"><img src="images/screenshot-6-6.7.png" alt="Photo AI"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURE 3 -->
+  <section class="feat">
+    <div class="feat-inner">
+      <div>
+        <div class="feat-tag">🏗️ Project Management</div>
+        <h3>Every RFI. Every project.<br>One place.</h3>
+        <p>See delivery health at a glance. Track who's on time, who's behind, and where to focus your attention.</p>
+        <ul class="feat-bullets">
+          <li><span class="ck">✓</span>Real-time project dashboard</li>
+          <li><span class="ck">✓</span>Smart RFI filters & search</li>
+          <li><span class="ck">✓</span>Push notifications on updates</li>
+        </ul>
+      </div>
+      <div class="feat-visual">
+        <div class="dual">
+          <div class="ph"><img src="images/screenshot-2-6.7.png" alt="Projects"></div>
+          <div class="ph"><img src="images/screenshot-3-6.7.png" alt="RFIs"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURE 4 -->
+  <section class="feat gray">
+    <div class="feat-inner reverse">
+      <div>
+        <div class="feat-tag">💰 Built-In Invoicing</div>
+        <h3>Track time. Invoice.<br>Get paid.</h3>
+        <p>Create invoices tied to RFIs and projects. Stripe-powered payments with automatic reminders.</p>
+        <ul class="feat-bullets">
+          <li><span class="ck">✓</span>Linked to RFIs & projects</li>
+          <li><span class="ck">✓</span>Stripe online payments</li>
+          <li><span class="ck">✓</span>PDF export & sharing</li>
+        </ul>
+      </div>
+      <div class="feat-visual">
+        <div class="ph single tr"><img src="images/screenshot-4-6.7.png" alt="Invoicing"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INTELLIGENCE -->
+  <section class="intel" id="intelligence">
+    <div class="intel-inner">
+      <div class="section-tag">🧠 Intelligence Layer</div>
+      <h2>Know your team before<br>you hire them.</h2>
+      <p class="sub">Track consultant performance across projects. Response times, cost blowouts, reliability — all quantified.</p>
+      <div class="intel-card">
+        <div class="intel-bar">
+          <div class="d r"></div><div class="d y"></div><div class="d g"></div>
+          <span class="u">intelligence.sitestream.au</span>
+        </div>
+        <div class="intel-grid">
+          <div class="im"><div class="l">Avg Response</div><div class="v t">4.2d</div><div class="c up">↓ 12% vs last month</div></div>
+          <div class="im"><div class="l">Active RFIs</div><div class="v w">47</div><div class="c up">↑ 8 new this week</div></div>
+          <div class="im"><div class="l">CRS Average</div><div class="v t">74%</div><div class="c up">↑ 3% improving</div></div>
+        </div>
+        <div class="intel-bars">
+          <div class="intel-bars-title">Top Performing Consultants</div>
+          <div class="ib"><div class="n">Sarah Mitchell</div><div class="tr"><div class="fl" style="width:92%"></div></div><div class="s">92</div></div>
+          <div class="ib"><div class="n">James Chen</div><div class="tr"><div class="fl" style="width:87%"></div></div><div class="s">87</div></div>
+          <div class="ib"><div class="n">Tom Bradley</div><div class="tr"><div class="fl" style="width:81%"></div></div><div class="s">81</div></div>
+          <div class="ib"><div class="n">Kate Nguyen</div><div class="tr"><div class="fl" style="width:74%"></div></div><div class="s">74</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section class="pricing" id="pricing">
+    <div class="pricing-inner">
+      <h2>Simple pricing.<br>No sales calls.</h2>
+      <p class="sub">Start free. Upgrade when you see the value.</p>
+      <div class="pricing-grid">
+        <div class="pc">
+          <div class="pn">Pro</div>
+          <div class="pa">$29<span>/mo</span></div>
+          <div class="pp">AUD • billed monthly</div>
+          <ul><li>Unlimited RFIs</li><li>Voice-to-RFI</li><li>Photo AI</li><li>Invoicing</li><li>5 team members</li></ul>
+          <button class="pb outline">Get Started</button>
+        </div>
+        <div class="pc pop">
+          <div class="pn">Enterprise</div>
+          <div class="pa">$79<span>/mo</span></div>
+          <div class="pp">AUD • billed monthly</div>
+          <ul><li>Everything in Pro</li><li>Unlimited team</li><li>Intelligence Dashboard</li><li>CRS Scoring</li><li>Priority support</li></ul>
+          <button class="pb fill">Get Started</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta">
+    <h2>Ready to stop chasing paper?</h2>
+    <p>Join the engineers, contractors, and subbies who've made the switch.</p>
+    <a href="#" class="btn-primary" style="display:inline-flex">Download SiteStream</a>
+  </section>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-copy">© 2026 SiteStream. Built in Melbourne.</div>
+      <div class="footer-links"><a href="#">Privacy</a><a href="#">Terms</a><a href="https://intelligence.sitestream.au">Intelligence</a></div>
+    </div>
+  </footer>
+
+</body>
+</html>
