@@ -4,10 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Subscribe - SiteStream</title>
-  <meta name="description" content="Choose your SiteStream plan. Professional and Enterprise subscriptions for construction teams.">
+  <meta name="description" content="Sign up for SiteStream and choose your plan. AI-powered construction RFI management for engineers, contractors and subbies.">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="icon" type="image/png" href="images/logo-80.png">
   <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <style>
     :root { --color-primary: #14B8A6; --color-primary-dark: #0D9488; }
     body { font-family: 'Inter', sans-serif; }
@@ -26,6 +27,13 @@
       background: linear-gradient(135deg, #8B5CF6, #7C3AED); color: white;
       padding: 4px 16px; border-radius: 20px; font-size: 12px; font-weight: 700; letter-spacing: 0.5px;
     }
+    .tab-active { color: #14B8A6; border-bottom: 2px solid #14B8A6; }
+    .tab-inactive { color: #6B7280; border-bottom: 2px solid transparent; }
+    .tab-active:hover, .tab-inactive:hover { color: #0D9488; }
+    .input-field { width: 100%; padding: 0.75rem 1rem; border: 1px solid #D1D5DB; border-radius: 0.75rem; font-size: 1rem; outline: none; transition: all 0.15s; }
+    .input-field:focus { border-color: #14B8A6; box-shadow: 0 0 0 2px rgba(20, 184, 166, 0.2); }
+    .error-text { color: #EF4444; font-size: 0.75rem; margin-top: 0.25rem; }
+    .success-banner { background: #ECFDF5; border: 1px solid #A7F3D0; color: #065F46; padding: 0.75rem 1rem; border-radius: 0.75rem; font-size: 0.875rem; }
   </style>
 </head>
 <body class="bg-gray-50 min-h-screen">
@@ -46,12 +54,61 @@
       <p class="text-lg text-gray-600 max-w-2xl mx-auto">Choose the plan that fits your team. Cancel anytime. Save ~25% by subscribing here instead of in-app.</p>
     </div>
 
-    <!-- Email input -->
-    <div class="max-w-md mx-auto mb-12">
-      <label for="email" class="block text-sm font-medium text-gray-700 mb-2">Your SiteStream account email</label>
-      <input type="email" id="email" placeholder="you@company.com.au"
-        class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-teal-500 focus:border-teal-500 text-lg">
-      <p class="text-xs text-gray-400 mt-1">Use the same email you signed up with in the app</p>
+    <!-- Account Section -->
+    <div class="max-w-md mx-auto mb-12 bg-white rounded-2xl p-6 border border-gray-200 shadow-sm">
+      <!-- Tabs -->
+      <div class="flex border-b border-gray-200 mb-6">
+        <button id="tab-signin" onclick="switchTab('signin')" class="flex-1 pb-3 text-sm font-semibold tab-active cursor-pointer">I have an account</button>
+        <button id="tab-signup" onclick="switchTab('signup')" class="flex-1 pb-3 text-sm font-semibold tab-inactive cursor-pointer">Create new account</button>
+      </div>
+
+      <!-- Sign In Form -->
+      <div id="form-signin">
+        <label class="block text-sm font-medium text-gray-700 mb-2">Your SiteStream email</label>
+        <input type="email" id="signin-email" placeholder="you@company.com.au" class="input-field">
+        <p class="text-xs text-gray-400 mt-1">Enter the email you use in the app</p>
+      </div>
+
+      <!-- Sign Up Form -->
+      <div id="form-signup" class="hidden">
+        <div class="space-y-4">
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1">Full name</label>
+            <input type="text" id="signup-name" placeholder="John Smith" class="input-field">
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+            <input type="email" id="signup-email" placeholder="you@company.com.au" class="input-field">
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1">Password</label>
+            <input type="password" id="signup-password" placeholder="At least 6 characters" class="input-field">
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1">Company</label>
+            <input type="text" id="signup-company" placeholder="Your company name" class="input-field">
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1">I am a...</label>
+            <select id="signup-role" class="input-field text-gray-600">
+              <option value="">Select your role</option>
+              <option value="contractor">Contractor / Builder</option>
+              <option value="engineer">Engineer</option>
+              <option value="architect">Architect</option>
+              <option value="subcontractor">Subcontractor</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1">Phone <span class="text-gray-400">(optional)</span></label>
+            <input type="tel" id="signup-phone" placeholder="+61 4XX XXX XXX" class="input-field">
+          </div>
+        </div>
+        <p class="text-xs text-gray-400 mt-3">Your account works in the app too — download SiteStream from the App Store and sign in with the same email.</p>
+      </div>
+
+      <!-- Status messages -->
+      <div id="auth-error" class="error-text mt-2 hidden"></div>
+      <div id="auth-success" class="success-banner mt-4 hidden"></div>
     </div>
 
     <!-- SiteStream App Plans -->
@@ -71,7 +128,10 @@
           <li class="flex items-start gap-2"><svg class="w-5 h-5 text-teal-500 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Photo documentation</li>
           <li class="flex items-start gap-2"><svg class="w-5 h-5 text-teal-500 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>5 AI credits/month</li>
         </ul>
-        <div class="text-center text-sm text-gray-400 py-3">Current plan</div>
+        <button onclick="handleFreeSignup()"
+          class="w-full py-3 px-6 rounded-xl font-semibold text-gray-700 border-2 border-gray-300 hover:border-teal-500 hover:text-teal-600 transition">
+          Get Started Free
+        </button>
       </div>
 
       <!-- Pro -->
@@ -90,7 +150,7 @@
           <li class="flex items-start gap-2"><svg class="w-5 h-5 text-teal-500 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Smart invoicing (2% fee)</li>
           <li class="flex items-start gap-2"><svg class="w-5 h-5 text-teal-500 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Priority support</li>
         </ul>
-        <button onclick="subscribe('price_1TBMlgLpylwHxNKa7QUC2hxr')"
+        <button onclick="handleSubscribe('price_1TBMlgLpylwHxNKa7QUC2hxr')"
           class="w-full py-3 px-6 rounded-xl font-semibold text-white transition"
           style="background: linear-gradient(135deg, #14B8A6, #0D9488);"
           onmouseover="this.style.opacity='0.9'" onmouseout="this.style.opacity='1'">
@@ -114,7 +174,7 @@
           <li class="flex items-start gap-2"><svg class="w-5 h-5 text-teal-500 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Custom branding</li>
           <li class="flex items-start gap-2"><svg class="w-5 h-5 text-teal-500 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>SLA guarantee</li>
         </ul>
-        <button onclick="subscribe('price_1TBMlgLpylwHxNKakB6AjOOT')"
+        <button onclick="handleSubscribe('price_1TBMlgLpylwHxNKakB6AjOOT')"
           class="w-full py-3 px-6 rounded-xl font-semibold text-gray-700 border-2 border-gray-300 hover:border-teal-500 hover:text-teal-600 transition">
           Subscribe to Enterprise
         </button>
@@ -146,7 +206,7 @@
             <li class="flex items-start gap-2"><svg class="w-5 h-5 text-purple-500 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Head-to-head comparison</li>
             <li class="flex items-start gap-2"><svg class="w-5 h-5 text-purple-500 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Data upload (CSV, Excel, Email)</li>
           </ul>
-          <button onclick="subscribe('price_1TBO8dLpylwHxNKaejGoIaGx')"
+          <button onclick="handleSubscribe('price_1TBO8dLpylwHxNKaejGoIaGx')"
             class="w-full py-3 px-6 rounded-xl font-semibold text-gray-700 border-2 border-gray-300 hover:border-purple-500 hover:text-purple-600 transition">
             Get Intelligence Lite
           </button>
@@ -171,7 +231,7 @@
             <li class="flex items-start gap-2"><svg class="w-5 h-5 text-purple-500 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Unlimited AI credits</li>
             <li class="flex items-start gap-2"><svg class="w-5 h-5 text-purple-500 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Priority support</li>
           </ul>
-          <button onclick="subscribe('price_1TBO8dLpylwHxNKaJCpl21Vv')"
+          <button onclick="handleSubscribe('price_1TBO8dLpylwHxNKaJCpl21Vv')"
             class="w-full py-3 px-6 rounded-xl font-semibold text-white transition"
             style="background: linear-gradient(135deg, #8B5CF6, #7C3AED);"
             onmouseover="this.style.opacity='0.9'" onmouseout="this.style.opacity='1'">
@@ -190,8 +250,8 @@
           <p class="text-gray-600 mt-3 text-sm">Apple charges a 30% commission on in-app purchases. By subscribing on our website, we pass those savings directly to you.</p>
         </details>
         <details class="bg-white rounded-xl p-5 border border-gray-200">
-          <summary class="font-medium text-gray-900 cursor-pointer">Will my subscription work in the app?</summary>
-          <p class="text-gray-600 mt-3 text-sm">Yes! Use the same email address you signed up with. Your subscription activates instantly across all devices.</p>
+          <summary class="font-medium text-gray-900 cursor-pointer">Do I need the app?</summary>
+          <p class="text-gray-600 mt-3 text-sm">You can sign up and subscribe right here on the website. Then download SiteStream from the App Store and sign in with the same email — your subscription activates instantly.</p>
         </details>
         <details class="bg-white rounded-xl p-5 border border-gray-200">
           <summary class="font-medium text-gray-900 cursor-pointer">What is SiteStream Intelligence?</summary>
@@ -217,20 +277,179 @@
   </footer>
 
   <script>
-    async function subscribe(priceId) {
-      const email = document.getElementById('email').value.trim();
-      if (!email || !email.includes('@')) {
-        alert('Please enter your SiteStream account email address.');
+    const SUPABASE_URL = 'https://rmtwafrxuitowmuhhhgx.supabase.co';
+    const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJtdHdhZnJ4dWl0b3dtdWhoaGd4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njc2MDcyODAsImV4cCI6MjA4MzE4MzI4MH0.Vdeu0bZYZqJoNROZaTGq0SjzGqweAhvq1cAd_ss1RSU';
+    const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+    let currentTab = 'signin';
+
+    function switchTab(tab) {
+      currentTab = tab;
+      document.getElementById('form-signin').classList.toggle('hidden', tab !== 'signin');
+      document.getElementById('form-signup').classList.toggle('hidden', tab !== 'signup');
+      document.getElementById('tab-signin').className = `flex-1 pb-3 text-sm font-semibold cursor-pointer ${tab === 'signin' ? 'tab-active' : 'tab-inactive'}`;
+      document.getElementById('tab-signup').className = `flex-1 pb-3 text-sm font-semibold cursor-pointer ${tab === 'signup' ? 'tab-active' : 'tab-inactive'}`;
+      clearMessages();
+    }
+
+    function clearMessages() {
+      document.getElementById('auth-error').classList.add('hidden');
+      document.getElementById('auth-success').classList.add('hidden');
+    }
+
+    function showError(msg) {
+      const el = document.getElementById('auth-error');
+      el.textContent = msg;
+      el.classList.remove('hidden');
+      // Scroll to the account section
+      el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+
+    function showSuccess(msg) {
+      const el = document.getElementById('auth-success');
+      el.textContent = msg;
+      el.classList.remove('hidden');
+    }
+
+    function getEmail() {
+      if (currentTab === 'signin') {
+        return document.getElementById('signin-email').value.trim();
+      }
+      return document.getElementById('signup-email').value.trim();
+    }
+
+    function validateSignup() {
+      const name = document.getElementById('signup-name').value.trim();
+      const email = document.getElementById('signup-email').value.trim();
+      const password = document.getElementById('signup-password').value;
+      const company = document.getElementById('signup-company').value.trim();
+      const role = document.getElementById('signup-role').value;
+
+      if (!name) { showError('Please enter your full name.'); return null; }
+      if (!email || !email.includes('@')) { showError('Please enter a valid email address.'); return null; }
+      if (password.length < 6) { showError('Password must be at least 6 characters.'); return null; }
+      if (!company) { showError('Please enter your company name.'); return null; }
+      if (!role) { showError('Please select your role.'); return null; }
+
+      return { name, email, password, company, role, phone: document.getElementById('signup-phone').value.trim() };
+    }
+
+    async function createAccount() {
+      const data = validateSignup();
+      if (!data) return null;
+
+      // Sign up with Supabase Auth
+      const { data: authData, error: authError } = await supabase.auth.signUp({
+        email: data.email,
+        password: data.password,
+      });
+
+      if (authError) {
+        if (authError.message.includes('already registered')) {
+          showError('This email is already registered. Switch to "I have an account" to subscribe.');
+          return null;
+        }
+        showError(authError.message);
+        return null;
+      }
+
+      if (!authData.user) {
+        showError('Something went wrong creating your account. Please try again.');
+        return null;
+      }
+
+      // Create user profile
+      const { error: profileError } = await supabase.from('users').insert([{
+        id: authData.user.id,
+        email: data.email.toLowerCase(),
+        full_name: data.name,
+        company_name: data.company,
+        phone: data.phone || null,
+        role: data.role,
+      }]);
+
+      if (profileError) {
+        console.warn('Profile insert error (may already exist):', profileError.message);
+      }
+
+      return data.email;
+    }
+
+    async function handleFreeSignup() {
+      clearMessages();
+      
+      if (currentTab === 'signin') {
+        const email = getEmail();
+        if (!email || !email.includes('@')) {
+          showError('Please enter your email address above.');
+          return;
+        }
+        showSuccess('You\'re all set! Download SiteStream from the App Store and sign in with ' + email);
         return;
       }
 
+      // Sign up flow
       const btn = event.target;
       const originalText = btn.textContent;
-      btn.textContent = 'Redirecting...';
+      btn.textContent = 'Creating account...';
       btn.disabled = true;
 
       try {
-        const res = await fetch('https://rmtwafrxuitowmuhhhgx.supabase.co/functions/v1/stripe-subscribe', {
+        const email = await createAccount();
+        if (email) {
+          showSuccess('Account created! Download SiteStream from the App Store and sign in with ' + email);
+        }
+      } catch (err) {
+        showError('Something went wrong. Please try again.');
+      } finally {
+        btn.textContent = originalText;
+        btn.disabled = false;
+      }
+    }
+
+    async function handleSubscribe(priceId) {
+      clearMessages();
+
+      let email;
+
+      if (currentTab === 'signup') {
+        // Create account first, then subscribe
+        const btn = event.target;
+        const originalText = btn.textContent;
+        btn.textContent = 'Creating account...';
+        btn.disabled = true;
+
+        try {
+          email = await createAccount();
+          if (!email) {
+            btn.textContent = originalText;
+            btn.disabled = false;
+            return;
+          }
+          btn.textContent = 'Redirecting to checkout...';
+        } catch (err) {
+          showError('Something went wrong creating your account. Please try again.');
+          btn.textContent = originalText;
+          btn.disabled = false;
+          return;
+        }
+      } else {
+        email = getEmail();
+        if (!email || !email.includes('@')) {
+          showError('Please enter your email address above.');
+          return;
+        }
+      }
+
+      // Proceed to Stripe checkout
+      const btn = event?.target;
+      if (btn) {
+        btn.textContent = 'Redirecting...';
+        btn.disabled = true;
+      }
+
+      try {
+        const res = await fetch(SUPABASE_URL + '/functions/v1/stripe-subscribe', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ priceId, email }),
@@ -240,14 +459,12 @@
         if (data.url) {
           window.location.href = data.url;
         } else {
-          alert(data.error || 'Something went wrong. Please try again.');
-          btn.textContent = originalText;
-          btn.disabled = false;
+          showError(data.error || 'Something went wrong. Please try again.');
+          if (btn) { btn.textContent = 'Try again'; btn.disabled = false; }
         }
       } catch (err) {
-        alert('Network error. Please try again.');
-        btn.textContent = originalText;
-        btn.disabled = false;
+        showError('Network error. Please try again.');
+        if (btn) { btn.textContent = 'Try again'; btn.disabled = false; }
       }
     }
   </script>
