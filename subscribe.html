@@ -277,20 +277,19 @@
   </footer>
 
   <script>
-    const SUPABASE_URL = 'https://rmtwafrxuitowmuhhhgx.supabase.co';
-    const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJtdHdhZnJ4dWl0b3dtdWhoaGd4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njc2MDcyODAsImV4cCI6MjA4MzE4MzI4MH0.Vdeu0bZYZqJoNROZaTGq0SjzGqweAhvq1cAd_ss1RSU';
-    const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+    var SUPABASE_URL = 'https://rmtwafrxuitowmuhhhgx.supabase.co';
+    var SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJtdHdhZnJ4dWl0b3dtdWhoaGd4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njc2MDcyODAsImV4cCI6MjA4MzE4MzI4MH0.Vdeu0bZYZqJoNROZaTGq0SjzGqweAhvq1cAd_ss1RSU';
+    var sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+    var currentTab = 'signin';
 
-    let currentTab = 'signin';
-
-    function switchTab(tab) {
+    window.switchTab = function(tab) {
       currentTab = tab;
       document.getElementById('form-signin').classList.toggle('hidden', tab !== 'signin');
       document.getElementById('form-signup').classList.toggle('hidden', tab !== 'signup');
-      document.getElementById('tab-signin').className = `flex-1 pb-3 text-sm font-semibold cursor-pointer ${tab === 'signin' ? 'tab-active' : 'tab-inactive'}`;
-      document.getElementById('tab-signup').className = `flex-1 pb-3 text-sm font-semibold cursor-pointer ${tab === 'signup' ? 'tab-active' : 'tab-inactive'}`;
+      document.getElementById('tab-signin').className = 'flex-1 pb-3 text-sm font-semibold cursor-pointer ' + (tab === 'signin' ? 'tab-active' : 'tab-inactive');
+      document.getElementById('tab-signup').className = 'flex-1 pb-3 text-sm font-semibold cursor-pointer ' + (tab === 'signup' ? 'tab-active' : 'tab-inactive');
       clearMessages();
-    }
+    };
 
     function clearMessages() {
       document.getElementById('auth-error').classList.add('hidden');
@@ -298,15 +297,14 @@
     }
 
     function showError(msg) {
-      const el = document.getElementById('auth-error');
+      var el = document.getElementById('auth-error');
       el.textContent = msg;
       el.classList.remove('hidden');
-      // Scroll to the account section
       el.scrollIntoView({ behavior: 'smooth', block: 'center' });
     }
 
     function showSuccess(msg) {
-      const el = document.getElementById('auth-success');
+      var el = document.getElementById('auth-success');
       el.textContent = msg;
       el.classList.remove('hidden');
     }
@@ -319,11 +317,11 @@
     }
 
     function validateSignup() {
-      const name = document.getElementById('signup-name').value.trim();
-      const email = document.getElementById('signup-email').value.trim();
-      const password = document.getElementById('signup-password').value;
-      const company = document.getElementById('signup-company').value.trim();
-      const role = document.getElementById('signup-role').value;
+      var name = document.getElementById('signup-name').value.trim();
+      var email = document.getElementById('signup-email').value.trim();
+      var password = document.getElementById('signup-password').value;
+      var company = document.getElementById('signup-company').value.trim();
+      var role = document.getElementById('signup-role').value;
 
       if (!name) { showError('Please enter your full name.'); return null; }
       if (!email || !email.includes('@')) { showError('Please enter a valid email address.'); return null; }
@@ -331,55 +329,53 @@
       if (!company) { showError('Please enter your company name.'); return null; }
       if (!role) { showError('Please select your role.'); return null; }
 
-      return { name, email, password, company, role, phone: document.getElementById('signup-phone').value.trim() };
+      return { name: name, email: email, password: password, company: company, role: role, phone: document.getElementById('signup-phone').value.trim() };
     }
 
     async function createAccount() {
-      const data = validateSignup();
-      if (!data) return null;
+      var formData = validateSignup();
+      if (!formData) return null;
 
-      // Sign up with Supabase Auth
-      const { data: authData, error: authError } = await supabase.auth.signUp({
-        email: data.email,
-        password: data.password,
+      var result = await sb.auth.signUp({
+        email: formData.email,
+        password: formData.password,
       });
 
-      if (authError) {
-        if (authError.message.includes('already registered')) {
+      if (result.error) {
+        if (result.error.message.includes('already registered')) {
           showError('This email is already registered. Switch to "I have an account" to subscribe.');
           return null;
         }
-        showError(authError.message);
+        showError(result.error.message);
         return null;
       }
 
-      if (!authData.user) {
+      if (!result.data || !result.data.user) {
         showError('Something went wrong creating your account. Please try again.');
         return null;
       }
 
-      // Create user profile
-      const { error: profileError } = await supabase.from('users').insert([{
-        id: authData.user.id,
-        email: data.email.toLowerCase(),
-        full_name: data.name,
-        company_name: data.company,
-        phone: data.phone || null,
-        role: data.role,
+      var insertResult = await sb.from('users').insert([{
+        id: result.data.user.id,
+        email: formData.email.toLowerCase(),
+        full_name: formData.name,
+        company_name: formData.company,
+        phone: formData.phone || null,
+        role: formData.role,
       }]);
 
-      if (profileError) {
-        console.warn('Profile insert error (may already exist):', profileError.message);
+      if (insertResult.error) {
+        console.warn('Profile insert error (may already exist):', insertResult.error.message);
       }
 
-      return data.email;
+      return formData.email;
     }
 
-    async function handleFreeSignup(e) {
+    window.handleFreeSignup = async function(e) {
       clearMessages();
       
       if (currentTab === 'signin') {
-        const email = getEmail();
+        var email = getEmail();
         if (!email || !email.includes('@')) {
           showError('Please enter your email address above.');
           return;
@@ -388,14 +384,13 @@
         return;
       }
 
-      // Sign up flow
-      const btn = e.target;
-      const originalText = btn.textContent;
+      var btn = e.target;
+      var originalText = btn.textContent;
       btn.textContent = 'Creating account...';
       btn.disabled = true;
 
       try {
-        const email = await createAccount();
+        var email = await createAccount();
         if (email) {
           showSuccess('Account created! Download SiteStream from the App Store and sign in with ' + email);
         }
@@ -405,17 +400,15 @@
         btn.textContent = originalText;
         btn.disabled = false;
       }
-    }
+    };
 
-    async function handleSubscribe(e, priceId) {
+    window.handleSubscribe = async function(e, priceId) {
       clearMessages();
-
-      let email;
+      var btn = e.target;
+      var email;
 
       if (currentTab === 'signup') {
-        // Create account first, then subscribe
-        const btn = e.target;
-        const originalText = btn.textContent;
+        var originalText = btn.textContent;
         btn.textContent = 'Creating account...';
         btn.disabled = true;
 
@@ -441,32 +434,30 @@
         }
       }
 
-      // Proceed to Stripe checkout
-      const btn = e?.target;
-      if (btn) {
-        btn.textContent = 'Redirecting...';
-        btn.disabled = true;
-      }
+      btn.textContent = 'Redirecting...';
+      btn.disabled = true;
 
       try {
-        const res = await fetch(SUPABASE_URL + '/functions/v1/stripe-subscribe', {
+        var res = await fetch(SUPABASE_URL + '/functions/v1/stripe-subscribe', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ priceId, email }),
+          body: JSON.stringify({ priceId: priceId, email: email }),
         });
 
-        const data = await res.json();
-        if (data.url) {
-          window.location.href = data.url;
+        var respData = await res.json();
+        if (respData.url) {
+          window.location.href = respData.url;
         } else {
-          showError(data.error || 'Something went wrong. Please try again.');
-          if (btn) { btn.textContent = 'Try again'; btn.disabled = false; }
+          showError(respData.error || 'Something went wrong. Please try again.');
+          btn.textContent = 'Try again';
+          btn.disabled = false;
         }
       } catch (err) {
         showError('Network error. Please try again.');
-        if (btn) { btn.textContent = 'Try again'; btn.disabled = false; }
+        btn.textContent = 'Try again';
+        btn.disabled = false;
       }
-    }
+    };
   </script>
 </body>
 </html>
