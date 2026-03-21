@@ -37,18 +37,26 @@
   </style>
 </head>
 <body class="bg-gray-50 min-h-screen">
-  <!-- Header -->
-  <header class="bg-white border-b border-gray-100">
-    <div class="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
-      <a href="/" class="flex items-center gap-2">
-        <img src="images/logo-80.png" alt="SiteStream" class="h-8 w-8">
+  <!-- Header (matches landing page) -->
+  <nav aria-label="Main navigation" class="sticky top-0 w-full z-50 bg-white/80 backdrop-blur-lg border-b border-gray-100">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+      <a href="/" class="flex items-center gap-3">
+        <img src="images/logo-80.png" alt="SiteStream" class="h-10 w-10" width="40" height="40">
         <span class="text-xl font-bold text-gray-900">SiteStream</span>
       </a>
-      <a href="/" class="text-gray-500 hover:text-gray-700 text-sm">← Back to home</a>
+      <div class="hidden md:flex items-center gap-8">
+        <a href="/#features" class="text-gray-600 hover:text-teal-500 transition">Features</a>
+        <a href="/#pricing" class="text-gray-600 hover:text-teal-500 transition">Pricing</a>
+        <a href="https://intelligence.sitestream.au" class="text-gray-600 hover:text-teal-500 transition">Intelligence</a>
+        <a href="/#faq" class="text-gray-600 hover:text-teal-500 transition">FAQ</a>
+      </div>
+      <div class="flex items-center gap-4">
+        <a href="https://apps.apple.com/au/app/sitestream/id6757634679" class="text-white px-4 py-2 rounded-full font-semibold transition whitespace-nowrap text-sm" style="background: linear-gradient(135deg, #14B8A6, #0D9488);">Get the App</a>
+      </div>
     </div>
-  </header>
+  </nav>
 
-  <main class="max-w-6xl mx-auto px-4 py-16">
+  <main class="max-w-6xl mx-auto px-4 py-12">
     <div class="text-center mb-12">
       <h1 class="text-4xl font-extrabold text-gray-900 mb-4">Simple, transparent pricing</h1>
       <p class="text-lg text-gray-600 max-w-2xl mx-auto">Choose the plan that fits your team. Cancel anytime. <strong class="text-teal-600">Save 10% for your first 3 months</strong> by subscribing here instead of in-app.</p>
