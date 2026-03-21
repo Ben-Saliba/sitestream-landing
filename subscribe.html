@@ -51,7 +51,7 @@
   <main class="max-w-6xl mx-auto px-4 py-16">
     <div class="text-center mb-12">
       <h1 class="text-4xl font-extrabold text-gray-900 mb-4">Simple, transparent pricing</h1>
-      <p class="text-lg text-gray-600 max-w-2xl mx-auto">Choose the plan that fits your team. Cancel anytime. Save ~25% by subscribing here instead of in-app.</p>
+      <p class="text-lg text-gray-600 max-w-2xl mx-auto">Choose the plan that fits your team. Cancel anytime. <strong class="text-teal-600">Save 10% for your first 3 months</strong> by subscribing here instead of in-app.</p>
     </div>
 
     <!-- Account Section -->
@@ -128,7 +128,7 @@
           <li class="flex items-start gap-2"><svg class="w-5 h-5 text-teal-500 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Photo documentation</li>
           <li class="flex items-start gap-2"><svg class="w-5 h-5 text-teal-500 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>5 AI credits/month</li>
         </ul>
-        <button onclick="handleFreeSignup()"
+        <button onclick="handleFreeSignup(event)"
           class="w-full py-3 px-6 rounded-xl font-semibold text-gray-700 border-2 border-gray-300 hover:border-teal-500 hover:text-teal-600 transition">
           Get Started Free
         </button>
@@ -141,7 +141,7 @@
           <span class="text-4xl font-extrabold text-gray-900">$29</span>
           <span class="text-gray-500">/month</span>
         </div>
-        <p class="text-xs text-teal-600 font-medium mb-6">AUD · Save vs in-app purchase</p>
+        <p class="text-xs text-teal-600 font-medium mb-6">AUD · 10% off first 3 months</p>
         <ul class="space-y-3 mb-8 flex-1 text-sm text-gray-600">
           <li class="flex items-start gap-2"><svg class="w-5 h-5 text-teal-500 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Unlimited projects</li>
           <li class="flex items-start gap-2"><svg class="w-5 h-5 text-teal-500 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Voice-to-RFI on site</li>
@@ -150,7 +150,7 @@
           <li class="flex items-start gap-2"><svg class="w-5 h-5 text-teal-500 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Smart invoicing (2% fee)</li>
           <li class="flex items-start gap-2"><svg class="w-5 h-5 text-teal-500 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Priority support</li>
         </ul>
-        <button onclick="handleSubscribe('price_1TBMlgLpylwHxNKa7QUC2hxr')"
+        <button onclick="handleSubscribe(event, 'price_1TBMlgLpylwHxNKa7QUC2hxr')"
           class="w-full py-3 px-6 rounded-xl font-semibold text-white transition"
           style="background: linear-gradient(135deg, #14B8A6, #0D9488);"
           onmouseover="this.style.opacity='0.9'" onmouseout="this.style.opacity='1'">
@@ -165,7 +165,7 @@
           <span class="text-4xl font-extrabold text-gray-900">$79</span>
           <span class="text-gray-500">/month</span>
         </div>
-        <p class="text-xs text-teal-600 font-medium mb-6">AUD · Save vs in-app purchase</p>
+        <p class="text-xs text-teal-600 font-medium mb-6">AUD · 10% off first 3 months</p>
         <ul class="space-y-3 mb-8 flex-1 text-sm text-gray-600">
           <li class="flex items-start gap-2"><svg class="w-5 h-5 text-teal-500 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Everything in Pro</li>
           <li class="flex items-start gap-2"><svg class="w-5 h-5 text-teal-500 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Team management</li>
@@ -174,7 +174,7 @@
           <li class="flex items-start gap-2"><svg class="w-5 h-5 text-teal-500 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Custom branding</li>
           <li class="flex items-start gap-2"><svg class="w-5 h-5 text-teal-500 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>SLA guarantee</li>
         </ul>
-        <button onclick="handleSubscribe('price_1TBMlgLpylwHxNKakB6AjOOT')"
+        <button onclick="handleSubscribe(event, 'price_1TBMlgLpylwHxNKakB6AjOOT')"
           class="w-full py-3 px-6 rounded-xl font-semibold text-gray-700 border-2 border-gray-300 hover:border-teal-500 hover:text-teal-600 transition">
           Subscribe to Enterprise
         </button>
@@ -206,7 +206,7 @@
             <li class="flex items-start gap-2"><svg class="w-5 h-5 text-purple-500 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Head-to-head comparison</li>
             <li class="flex items-start gap-2"><svg class="w-5 h-5 text-purple-500 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Data upload (CSV, Excel, Email)</li>
           </ul>
-          <button onclick="handleSubscribe('price_1TBO8dLpylwHxNKaejGoIaGx')"
+          <button onclick="handleSubscribe(event, 'price_1TBO8dLpylwHxNKaejGoIaGx')"
             class="w-full py-3 px-6 rounded-xl font-semibold text-gray-700 border-2 border-gray-300 hover:border-purple-500 hover:text-purple-600 transition">
             Get Intelligence Lite
           </button>
@@ -231,7 +231,7 @@
             <li class="flex items-start gap-2"><svg class="w-5 h-5 text-purple-500 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Unlimited AI credits</li>
             <li class="flex items-start gap-2"><svg class="w-5 h-5 text-purple-500 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Priority support</li>
           </ul>
-          <button onclick="handleSubscribe('price_1TBO8dLpylwHxNKaJCpl21Vv')"
+          <button onclick="handleSubscribe(event, 'price_1TBO8dLpylwHxNKaJCpl21Vv')"
             class="w-full py-3 px-6 rounded-xl font-semibold text-white transition"
             style="background: linear-gradient(135deg, #8B5CF6, #7C3AED);"
             onmouseover="this.style.opacity='0.9'" onmouseout="this.style.opacity='1'">
@@ -247,7 +247,7 @@
       <div class="space-y-4">
         <details class="bg-white rounded-xl p-5 border border-gray-200">
           <summary class="font-medium text-gray-900 cursor-pointer">Why is it cheaper here than in-app?</summary>
-          <p class="text-gray-600 mt-3 text-sm">Apple charges a 30% commission on in-app purchases. By subscribing on our website, we pass those savings directly to you.</p>
+          <p class="text-gray-600 mt-3 text-sm">Apple charges a 30% commission on in-app purchases. When you subscribe on our website, we give you 10% off for your first 3 months — savings we can pass on because we avoid Apple's fees.</p>
         </details>
         <details class="bg-white rounded-xl p-5 border border-gray-200">
           <summary class="font-medium text-gray-900 cursor-pointer">Do I need the app?</summary>
@@ -375,7 +375,7 @@
       return data.email;
     }
 
-    async function handleFreeSignup() {
+    async function handleFreeSignup(e) {
       clearMessages();
       
       if (currentTab === 'signin') {
@@ -389,7 +389,7 @@
       }
 
       // Sign up flow
-      const btn = event.target;
+      const btn = e.target;
       const originalText = btn.textContent;
       btn.textContent = 'Creating account...';
       btn.disabled = true;
@@ -407,14 +407,14 @@
       }
     }
 
-    async function handleSubscribe(priceId) {
+    async function handleSubscribe(e, priceId) {
       clearMessages();
 
       let email;
 
       if (currentTab === 'signup') {
         // Create account first, then subscribe
-        const btn = event.target;
+        const btn = e.target;
         const originalText = btn.textContent;
         btn.textContent = 'Creating account...';
         btn.disabled = true;
@@ -442,7 +442,7 @@
       }
 
       // Proceed to Stripe checkout
-      const btn = event?.target;
+      const btn = e?.target;
       if (btn) {
         btn.textContent = 'Redirecting...';
         btn.disabled = true;
